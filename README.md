@@ -1,1 +1,1 @@
-# KNU-final-project1
+# knu-cdp1-group-project
