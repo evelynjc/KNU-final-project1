@@ -1,0 +1,57 @@
+<html>
+<head>
+     
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link href="../public/stylesheets/login.css" rel="stylesheet">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<!------ Include the above in your HEAD tag ---------->
+    <title>login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="font-family :nanuultra;">
+    <div class = "message">
+       MEDICAL<br>INFORMATION<br>SHARING<br>SYSTEM
+    </div>
+    <div class = "message_sub">
+        KNU MEDICAL INSTITUTE
+    </div>
+            <div class="login-container">
+                    <div>
+                        <div class="login-form-1">
+                            <h3>Login</h3>
+                                <form method="post" action="./patient_login_check.php">
+                                    <div class="text_form">
+                                        <input type="text" class="form-control_text" placeholder="ID" name='user_id' />
+                                    </div>
+                                    <div class="text_form">
+                                        <input type="password" class="form-control_text" placeholder="Password" name='user_pw'/>
+                                    </div>
+                                    <a href="#" class="btnForgetPwd">비밀번호를 잊으셨나요?</a>
+                                    <div>
+                                       <button type="submit" class="btnSubmit">LOGIN</button>
+                                    </div>
+                                </form>
+                            
+                        </div>
+                    </div>
+                </div>
+    <div class = "button_zone">
+    <button class = "login_button" onclick='location.href="./login.html"'>LOGIN</button>
+    <button class = "sign_button" onclick='location.href="./signup.html"'>SIGN UP</button>
+    </div>
+</body>
+<footer sytle="font-family : nanumUltra;">
+        <div style="position : absolute; bottom:6.8vw;background-color:rgb(255, 80, 80); width:100%; height:0.1vw;margin-bottom:0.1vw"></div>
+        <div style="font-size:1.5vw; margin:1vw; margin-bottom:0.5vw;font-weight:100;">
+            <p style="position: absolute; margin-left:65vw; margin-top:1.5vw"><i class="fa fa-info-circle" aria-hidden="true"></i> Information</p>
+            <p style="position: absolute; margin-left:77vw; margin-top:1.5vw"><i class="fa fa-question-circle-o" aria-hidden="true"></i> Help</p>
+            <p style="position: absolute; margin-left:85vw; margin-top:1.5vw"><i class="fa fa-shield" aria-hidden="true"></i> Policy</p>
+            <p>2019 KNU Project <br> Team 3</p>
+        </div>
+        <div style="font-size:0.8vw; margin-left:1vw;">
+             Blockchain-linked <br> Medical Information Sharing System<br>
+        </div>
+    </footer>
+</html>

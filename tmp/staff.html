@@ -1,0 +1,148 @@
+<html>
+
+<head>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+        id="bootstrap-css">
+    <link href="../public/stylesheets/staff.css" rel="stylesheet">
+    <link href="../public/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <!------ Include the above in your HEAD tag ---------->
+    <title>login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body sytle="font-family : nanumUltra;">
+    <div class="top-div">
+        <p style="position:absolute; color:rgba(255,255,255,0.5); margin-left:93vw;margin-top:1vw;">LOGOUT</p>
+        <p style="color:white; font-size:2vw; margin-left:2vw; padding-top:3vw">[이채현]님 환영합니다.</p>
+        <p style="color:white; font-size:1.5vw; margin-left:80vw;"> KNU MEDICAL INSTITUTE</p>
+        <div
+            style="position : absolute; top:6.8vw;background-color:rgb(255, 80, 80); width:100%; height:0.1vw;margin-bottom:0.1vw">
+        </div>
+        <div
+            style="position : absolute; top:7vw;background-color:rgb(255, 80, 80); width:100%; height:0.4vw;margin-bottom:0.1vw">
+        </div>
+    </div>
+
+    <div style="position:absolute;font-size:8vw; margin-left: 8.5vw; top:11vw;">
+            <i class="fa fa-user-md" aria-hidden="true"></i>
+    </div>
+    <div style="margin-left:17vw; margin-top:6vw;">
+        <span style="font-size:2vw;">[이채현]</span><p style="font-size:1.5vw;"><br>정형외과 전문의<br>D17040302</p>
+    </div>
+    <div style="margin-left:9vw; margin-top:2vw;">
+            <span style="font-size:2vw;">[정형외과]</span><span style="font-size:1.5vw;">의 환자목록입니다.<span>
+        </div>
+    <div class ="board">
+        <button class="menu_button">진료</button>
+        <button class="menu_button">회진</button>
+        <button class="menu_button">조회</button>
+        <input class="search" type="text" id="myInput" onkeyup="myFunction()" placeholder="검색">
+        <button class="filter_button"><i class="fa fa-filter" aria-hidden="true"></i></button>
+
+        <div class="table_div">
+                <table>
+                    <tr>
+                        <th>일시</th>
+                        <th>진단명</th>
+                        <th>담당의</th>
+                        <th>진료부서</th>
+                        <th>기관</th>
+                    </tr>
+                    <tbody>
+                        <tr>
+                            <td>2017.02.15</td>
+                            <td>스트레스로 인한 우울증같은 상실감</td>
+                            <td>김지수</td>
+                            <td>정신과</td>
+                            <td>KNU MEDICAL INSTITUTE</td>
+                        </tr>
+                        <tr>
+                            <td>2018.03.07</td>
+                            <td>외상 후 스트레스 증후군</td>
+                            <td>김지수</td>
+                            <td>정신과</td>
+                            <td>KNU MEDICAL INSTITUTE</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+    </div>
+    
+</body>
+<footer sytle="font-family : nanumUltra;">
+    <div
+        style="position : absolute; bottom:6.8vw;background-color:rgb(255, 80, 80); width:100%; height:0.1vw;margin-bottom:0.1vw">
+    </div>
+    <div style="font-size:1.5vw; margin:1vw; margin-bottom:0.5vw;font-weight:100;">
+        <p style="position: absolute; margin-left:65vw; margin-top:1.5vw"><i class="fa fa-info-circle"
+                aria-hidden="true"></i> Information</p>
+        <p style="position: absolute; margin-left:77vw; margin-top:1.5vw"><i class="fa fa-question-circle-o"
+                aria-hidden="true"></i> Help</p>
+        <p style="position: absolute; margin-left:85vw; margin-top:1.5vw"><i class="fa fa-shield"
+                aria-hidden="true"></i> Policy</p>
+        <p>2019 KNU Project <br> Team 3</p>
+    </div>
+    <div style="font-size:0.8vw; margin-left:1vw;">
+        Blockchain-linked <br> Medical Information Sharing System<br>
+    </div>
+</footer>
+
+</html>
