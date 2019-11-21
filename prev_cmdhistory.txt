@@ -1,0 +1,22 @@
+npm init (inside the working directory)
+npm install express (installing express locally)
+package.json (index.js -> server.js)
+vi server.js
+vi index.html
+npm start
+sudo apt update
+sudo apt install mysql-server
+sudo mysql_secure_installation utility (set root pw cdp1mysqlsrv)
+npm install ejs
+npm install express-session
+----------------------------------------------------------
+https://support.rackspace.com/how-to/installing-mysql-server-on-ubuntu/
+
+https://poiemaweb.com/nodejs-mysql
+
+http://www.mysqltutorial.org/mysql-insert-statement.aspx
+https://dev.mysql.com/doc/refman/8.0/en/creating-tables.html
+https://dba.stackexchange.com/questions/24371/how-to-import-a-sql-file-in-mysql
+
+
+UPDATE mysql.user SET authentication_string = PASSWORD('cdp1') WHERE User = 'root';
