@@ -49,7 +49,7 @@ table {
 .board{
     position: absolute;
     background-color:#f2f2f2;
-    height:35vw;
+    height:90vw;
     width:80vw;
     margin-left:9vw;
     margin-top:2vw;
@@ -60,19 +60,8 @@ table {
     width:76vw;
     height:15vw;
     margin-left:2vw;
-}
-
-.menu_button{
-    width:9vw;
-    height:2vw;
-    margin-left:2vw;
-    margin-top:4vw;
-    font-size:1.2vw;
-    color:white;
-    background-color: rgba(255, 80, 80,0.8);
-    outline:0;
-    border:0;
-    border-radius: 5px;
+    text-align-last: left;
+    font-size:1vw;
 }
 
 .filter_button{
@@ -86,7 +75,7 @@ table {
 footer{
     font-family : nanumUltra;
     position:absolute;
-    bottom:-25vw;
+    bottom:-70vw;
     height:6.8vw;
     width:100%;
     background-color:rgb(255, 80, 80);
@@ -130,3 +119,21 @@ table th {
     overflow: auto;
     border:none;
 }
+
+.menu_button{
+    width:6vw;
+    height:2vw;
+    margin-top:2vw;
+    font-size:1.2vw;
+    color:white;
+    background-color: rgba(255, 80, 80,0.8);
+    outline:0;
+    border:0;
+    border-radius: 5px;
+}
+
+#modal_back { position:absolute; top:0; left:0; width:98.9vw; height:117.6vw; display:none; background:rgba(0,0,0,0.5); }
+
+	#modal { margin:40vw;background:#FFF; color:#000; border-radius:6px; box-shadow:0 5px 15px rgba(0,0,0,0.5); }
+
+	#modal a { color:#000; align-items: center;}
