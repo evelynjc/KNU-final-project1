@@ -6,21 +6,44 @@ router.get('/', (req,res,next) => {
     res.redirect('/');
 });
 
-/* Individual GET*/
+/* Individual User GET */
 router.get('/individual', (req,res,next) => {
-    res.render('contents/indiv');
+    let sess = req.session;
+    if(sess.userid && sess.typeUser){
+        res.render('contents/indiv');
+    }
+    else{
+        console.log('user page, access denied');
+        res.redirect('/users/login');
+    }
 });
 
-/* Medical Staff GET*/
+/* Medical Staff GET */
 router.get('/medical-staff-doctor', (req,res,next) => {
-    res.render('contents/doctor');
+    //res.render('contents/doctor');
+    let sess = req.session;
+    if(sess.userid && sess.typeDoctor){
+        res.render('contents/doctor');
+    }
+    else{
+        console.log('doctor page, access denied');
+        res.redirect('/users/login');
+    }
 });
 
 router.get('/medical-staff-nurse', (req,res,next) => {
-    res.render('contents/nurse');
+    //res.render('contents/nurse');
+    let sess = req.session;
+    if(sess.userid && sess.typeNurse){
+        res.render('contents/nurse');
+    }
+    else{
+        console.log('nurse page, access denied');
+        res.redirect('/users/login');
+    }
 });
 
-/* Medical Staff POST*/
+/* Medical Staff POST */
 router.post('/medical-staff-doctor', (req,res,next) => {
     console.log('doctor form submitted');
     res.redirect('/');

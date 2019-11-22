@@ -1,0 +1,11 @@
+npm init
+npm install express --save
+sudo npm install -g express-generator
+express CDP1 --view=ejs
+
+cd CDP1
+npm install
+npm start
+
+sudo apt install tree
+npm install express-session -save

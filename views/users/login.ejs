@@ -5,7 +5,14 @@
     <title>Login</title>
 </head>
 <body>
+    <% if (session.userid) { console.log('session id: '+session.id);%>
+    <h3>You've successfully signed in</h3>
+    <p>hmmm?</p>
+    <form action="/users/logout" method="get">
+        <input type="submit" value="logout">
+    </form>
 
+    <% } else { %>
 <h3>SIGN IN</h3>
 <form action="/users/login" method="post">
     <table>
@@ -22,6 +29,6 @@
         </tr>
     </table>
 </form>
-
+    <% } %>
 </body>
 </html>
