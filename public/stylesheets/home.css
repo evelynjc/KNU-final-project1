@@ -37,18 +37,20 @@ q:before, q:after {
 	content: '';
 	content: none;
 }
+a:hover{ text-decoration:none } 
+
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
 .top-div { 
-    background: url(../../views/top_back.jpg); 
+    background: url(/images/top_back.jpg); 
     background-size: cover;
     height: 7vw;
   }
 
 .menu{
-    background:url(../../views/menu.png);
+    background:url(/images/menu.png);
     margin-left:58.9vw;
     height:4vw;
     width:40vw;
