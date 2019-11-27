@@ -1,0 +1,171 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+body { 
+    background: url(/images/login_back.jpg); 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+.message{
+    margin-left : 10vw;
+    margin-top : 5vw;
+    color : white;
+    font-size : 5vw;
+    font-weight: bold;
+    letter-spacing: 0.1vw;
+    line-height: 6vw;
+    text-shadow: 2px 2px 2px gray;
+}
+.message_sub{
+    margin-left : 10vw;
+    margin-top : 1vw;
+    color : white;
+    font-size : 1.5vw;
+    letter-spacing: 0.05vw;
+    line-height: 120%;
+    text-shadow: 2px 2px 2px gray;
+}
+.button_zone{
+    margin-top:1vw;
+    margin-left:10vw;
+}
+.login_button{
+    width:9vw;
+    height:3vw;
+    font-size:1.2vw;
+    color:rgb(255, 80, 80);
+    background-color: rgba(0,0,0,0.5);
+    outline:3px;
+    border:3;
+    border-radius: 5px;
+    border-color : rgb(255, 80, 80);
+    outline-color : rgb(255, 80, 80);
+}
+.sign_button{
+    width:9vw;
+    height:3vw;
+    margin-left:1.5vw;
+    font-size:1.2vw;
+    color:white;
+    background-color: rgb(255, 80, 80);
+    outline:0;
+    border:0;
+    border-radius: 5px;
+}
+.login-container{
+    position: absolute;
+    left : 55vw;
+    top : 13vw;
+
+}
+.login-form-1{ 
+    width:23vw;
+    height:15vw;
+    padding:1vw;
+    background:white;
+    border:0;
+    border-radius: 10px;
+}
+.login-form-1 h3{
+    margin-top:0.2vw;
+    margin-left : 0.6vw;
+    margin-bottom:1vw;
+    font-size:1.5vw;
+    color:black;
+    font-weight: 100;
+}
+.text_form{
+    margin-left:0.5vw;
+    margin-bottom:0.7vw;
+    margin-top:1vw;
+}
+
+.form-control_text{
+    width:20vw;
+    height:2.5vw;
+    font-size:1vw;
+    border-color: rgba(255, 80, 80,0.5);
+    box-shadow: 1px 1px 1px rgba(255, 80, 80,0.5);
+    border-radius: 7px;
+    padding:0.5vw;
+    color:rgba(0,0,0,0.5);
+}
+
+.form-control_text::placeholder{
+    color:rgba(0,0,0,0.2);
+}
+
+.btnSubmit{
+    font-weight: 10vw  ;
+    margin-left : 16vw;
+    margin-top : 1vw;
+    font-size:1vw;
+    color: #282726;
+    background-color:transparent;
+    border: none;
+    letter-spacing: 0.01vw;
+    border-radius: 0;
+    font-weight: 100;
+}
+.btnForgetPwd{
+    color: rgb(113, 175, 251);
+    font-weight: 600;
+    text-decoration: none;
+    font-size:0.7vw;
+    margin-left:1.1vw;
+    text-decoration: underline;
+}
+.btnForgetPwd:hover{
+    text-decoration:none;
+    color:rgb(255, 80, 80);
+}
+
+footer{
+    position:absolute;
+    bottom:-7vw;
+    height:6.8vw;
+    width:100%;
+    background-color:rgb(255, 80, 80);
+}

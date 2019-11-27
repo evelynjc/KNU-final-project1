@@ -7,10 +7,10 @@ router.get('/', (req,res,next) => {
 });
 
 /* Individual User GET */
-router.get('/individual', (req,res,next) => {
+router.get('/home', (req,res,next) => {
     let sess = req.session;
     if(sess.userid && sess.typeUser){
-        res.render('contents/indiv');
+        res.render('contents/home');
     }
     else{
         console.log('user page, access denied');
@@ -18,40 +18,26 @@ router.get('/individual', (req,res,next) => {
     }
 });
 
-/* Medical Staff GET */
-router.get('/medical-staff-doctor', (req,res,next) => {
-    //res.render('contents/doctor');
-    let sess = req.session;
-    if(sess.userid && sess.typeDoctor){
-        res.render('contents/doctor');
-    }
-    else{
-        console.log('doctor page, access denied');
-        res.redirect('/users/login');
-    }
-});
+/* See GET */
 
-router.get('/medical-staff-nurse', (req,res,next) => {
-    //res.render('contents/nurse');
+/* Medical Staff GET */
+router.get('/medical-staff', (req,res,next) => {
     let sess = req.session;
-    if(sess.userid && sess.typeNurse){
-        res.render('contents/nurse');
+    if(sess.userid && sess.typeMedStaff){
+        res.render('contents/staff');
     }
     else{
-        console.log('nurse page, access denied');
+        console.log('medical staff page, access denied');
         res.redirect('/users/login');
     }
 });
 
 /* Medical Staff POST */
-router.post('/medical-staff-doctor', (req,res,next) => {
-    console.log('doctor form submitted');
-    res.redirect('/');
-});
-router.post('/medical-staff-nurse', (req,res,next) => {
-    console.log('nurse form submitted');
+router.post('/medical-staff', (req,res,next) => {
+    console.log('medical staff form submitted');
     res.redirect('/');
 });
 
+/* Write GET*/
 
 module.exports = router;

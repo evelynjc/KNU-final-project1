@@ -37,7 +37,7 @@ router.post('/login', async(req,res,next) => {
             console.log('login successful as a common user');
             req.session.userid = inputid;
             req.session.typeUser = inputid;
-            res.redirect('/contents/individual');
+            res.redirect('/contents/home');
         }
         else{
             console.log('common user id, login failed');
@@ -48,8 +48,8 @@ router.post('/login', async(req,res,next) => {
         if(inputpw === user2pw){
             console.log('login successful as a doctor');
             req.session.userid = inputid;
-            req.session.typeDoctor = inputid;
-            res.redirect('/contents/medical-staff-doctor');
+            req.session.typeMedStaff = inputid;
+            res.redirect('/contents/medical-staff');
         }
         else{
             console.log('doctor id, login failed');
@@ -60,8 +60,8 @@ router.post('/login', async(req,res,next) => {
         if(inputpw === user3pw){
             console.log('login successful as a nurse');
             req.session.userid = inputid;
-            req.session.typeNurse = inputid;
-            res.redirect('/contents/medical-staff-nurse');
+            req.session.typeMedStaff = inputid;
+            res.redirect('/contents/medical-staff');
         }
         else{
             console.log('nurse id, login failed');
@@ -93,7 +93,11 @@ router.get('/logout', (req,res,next) => {
 
 /* SIGN UP GET (signup form) */
 router.get('/signup', (req, res, next) => {
-  res.render('users/signup');
+    let session = req.session;
+
+    res.render('users/signup', {
+        session : session
+    });
 });
 
 /* SIGN UP POST*/
