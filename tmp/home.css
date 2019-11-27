@@ -142,7 +142,7 @@ table {
 footer{
     font-family : nanumUltra;
     position:absolute;
-    bottom:-7vw;
+    bottom:-100vw;
     height:6.8vw;
     width:100%;
     background-color:rgb(255, 80, 80);
@@ -209,4 +209,13 @@ nav > div a.nav-item.nav-link:focus
     color:rgb(255, 80, 80);
     background:white;
     border-radius:0;
+}
+
+.board{
+    position: absolute;
+    background-color:#f2f2f2;
+    height:80vw;
+    width:80vw;
+    margin-left:9vw;
+    margin-top:2vw;
 }

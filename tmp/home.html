@@ -5,8 +5,10 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
         id="bootstrap-css">
     <link href="../public/stylesheets/home.css" rel="stylesheet">
+    <script src="../public/javascripts/see.js"></script>
     <link href="../public/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -49,109 +51,134 @@
         <i class="fa fa-stethoscope" aria-hidden="true"></i>
     </div>
     <div style="margin-left:15vw; margin-top:2vw;   ">
-        <span style="font-size:1.5vw">[김지수]</span><span style="font-size:1vw;">님의 진료정보입니다.</span>
+        <span style="font-size:1.5vw">[김지수]</span><span style="font-size:1vw;">님의 정보입니다.</span>
     </div>
     <div>
         <div>
-            <nav>
-                <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist" style="font-size:1vw;">
-                    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
-                        aria-controls="nav-home" aria-selected="true">현재 기관만</a>
-                    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
-                        aria-controls="nav-profile" aria-selected="false">전체 기관</a>
-                </div>
-                <input class="search" type="text" id="myInput" onkeyup="myFunction()" placeholder="검색">
-                <div style="position:absolute;margin-left:76vw;top:15.3vw;">
-                        <div class="form-group ">
-                            <select id="inputState " class="form-control_filter">
-                                <option selected >오래된 순</option>
-                                <option >BMW</option>
-                                <option>Audi</option>
-                                <option>Maruti</option>
-                                <option>Tesla</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div
-                        style="position : relative;background-color:rgb(255, 80, 80); width:74vw; height:0.2vw;margin-bottom:0.1vw; margin-left:13vw;">
-                    </div>
+            <div
+                style="position : relative;background-color:rgb(255, 80, 80); width:74vw; height:0.2vw;margin-bottom:0.1vw; margin-left:13vw; margin-top:3vw">
+            </div>
 
-                    <div>
-                        <table>
-                            <tr>
-                                <th>일시</th>
-                                <th>진단명</th>
-                                <th>담당의</th>
-                                <th>진료부서</th>
-                                <th>기관</th>
-                            </tr>
-                            <tbody>
-                                <tr>
-                                    <td>2017.02.15</td>
-                                    <td>스트레스로 인한 우울증같은 상실감</td>
-                                    <td>김지수</td>
-                                    <td>정신과</td>
-                                    <td>KNU MEDICAL INSTITUTE</td>
-                                </tr>
-                                <tr>
-                                    <td>2018.03.07</td>
-                                    <td>외상 후 스트레스 증후군</td>
-                                    <td>김지수</td>
-                                    <td>정신과</td>
-                                    <td>KNU MEDICAL INSTITUTE</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+            <div>
+                <table>
+                    <tr>
+                        <th>환자번호</th>
+                        <th>성별</th>
+                        <th>담당의</th>
+                        <th>병동</th>
+                        <th>병실</th>
+                        <th>입원일</th>
+                        <th>입원부서</th>
+                        <th>구분</th>
+                        <th>상태</th>
+                    </tr>
+                    <tbody>
+                        <tr>
+                            <td>P19112102131</td>
+                            <td>남</td>
+                            <td>김지수</td>
+                            <td>3B</td>
+                            <td>204</td>
+                            <td>2016-09-12</td>
+                            <td>정신과</td>
+                            <td>일반</td>
+                            <td>퇴원</td>
+                        </tr>
+                        <tr>
+                            <td>P19112109125</td>
+                            <td>남</td>
+                            <td>김지수</td>
+                            <td>3A</td>
+                            <td>308</td>
+                            <td>2017-04-03</td>
+                            <td>정신과</td>
+                            <td>일반</td>
+                            <td>입원</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-left:9vw; margin-top:5vw;">
+        <span style="font-size:2vw;">[김지수]</span><span style="font-size:1.5vw;">님의 활력징후<span>
+    </div>
+    <div class="board">
+            <p style="margin-left:5vw; margin-top :2vw; margin-bottom:1vw; font-size:1.5vw;">맥 박</p>
+            <div id="chartContainer" style="height: 20vw; width: 70vw; margin-left:5vw;"></div>
+            <p style="margin-left:5vw; margin-top :2vw; margin-bottom:1vw; font-size:1.5vw;">호 흡</p>
+            <div id="chartContainer2" style="height: 20vw; width: 70vw; margin-left:5vw;"></div>
+            <p style="margin-left:5vw; margin-top :2vw; margin-bottom:1vw; font-size:1.5vw;">체 온</p>
+            <div id="chartContainer3" style="height: 20vw; width: 70vw; margin-left:5vw;"></div>
+    </div>
+
 </body>
 <footer sytle="font-family : nanumUltra;">
     <div

@@ -1,5 +1,0 @@
-#modal_back { position:absolute; top:0; left:0; width:30vw; height:500vw; display:none; background:rgba(0,0,0,0.5); }
-
-	#modal { position:absolute; background:#FFF; color:#000; border-radius:6px; box-shadow:0 5px 15px rgba(0,0,0,0.5); }
-
-	#modal a { color:#000; align-items: center;}
