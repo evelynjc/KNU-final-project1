@@ -94,8 +94,8 @@ footer{
 
 .search{
     font-family : nanumUltra;
-    margin-left: 17vw; position:absolute; top:5vw;width:15vw;height: 2vw;
-                 background-color : rgb(218, 218, 218); border:1px solid black;
+    margin-left: 17vw; position:absolute; top:4vw;width:15vw;height: 2vw;
+                 background-color : rgb(218, 218, 218); border:0.05vw solid black;
 }
 
 table{
