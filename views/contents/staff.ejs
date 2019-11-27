@@ -21,7 +21,9 @@
 
 <body sytle="font-family : nanumUltra;">
     <div class="top-div">
-        <p style="position:absolute; color:rgba(255,255,255,0.5); margin-left:93vw;margin-top:1vw;">LOGOUT</p>
+        <form action="/users/logout" method="get">
+            <input type="submit" style="position:absolute; color:rgba(255,255,255,0.5); margin-left:93vw;margin-top:1vw; outline: 0; border:0; background:none;" value="SIGN OUT">
+        </form>
         <p style="color:white; font-size:2vw; margin-left:2vw; padding-top:3vw">[이채현]님 환영합니다.</p>
         <p style="color:white; font-size:1.5vw; margin-left:80vw;"> KNU MEDICAL INSTITUTE</p>
         <div
@@ -49,80 +51,109 @@
         <button class="filter_button"><i class="fa fa-filter" aria-hidden="true"></i></button>
 
         <div class="table_div">
-                <table>
+            <table>
+                <tr>
+                    <th>환자번호</th>
+                    <th>성별</th>
+                    <th>담당의</th>
+                    <th>병동</th>
+                    <th>병실</th>
+                    <th>입원일</th>
+                    <th>입원부서</th>
+                    <th>구분</th>
+                    <th>상태</th>
+                </tr>
+                <tbody>
                     <tr>
-                        <th>일시</th>
-                        <th>진단명</th>
-                        <th>담당의</th>
-                        <th>진료부서</th>
-                        <th>기관</th>
+                        <td>P19112102131</td>
+                        <td>남</td>
+                        <td>김지수</td>
+                        <td>3B</td>
+                        <td>204</td>
+                        <td>2016-09-12</td>
+                        <td>정신과</td>
+                        <td>일반</td>
+                        <td>퇴원</td>
                     </tr>
-                    <tbody>
-                        <tr>
-                            <td>2017.02.15</td>
-                            <td>스트레스로 인한 우울증같은 상실감</td>
-                            <td>김지수</td>
-                            <td>정신과</td>
-                            <td>KNU MEDICAL INSTITUTE</td>
-                        </tr>
-                        <tr>
-                            <td>2018.03.07</td>
-                            <td>외상 후 스트레스 증후군</td>
-                            <td>김지수</td>
-                            <td>정신과</td>
-                            <td>KNU MEDICAL INSTITUTE</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
+                    <tr>
+                        <td>P19112109125</td>
+                        <td>남</td>
+                        <td>김지수</td>
+                        <td>3A</td>
+                        <td>308</td>
+                        <td>2017-04-03</td>
+                        <td>정신과</td>
+                        <td>일반</td>
+                        <td>입원</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
             </div>
 
     </div>

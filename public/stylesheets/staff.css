@@ -42,7 +42,7 @@ table {
 	border-spacing: 0;
 }
 .top-div { 
-    background: url(../../views/top_back.jpg); 
+    background: url(/images/top_back.jpg); 
     background-size: cover;
     height: 7vw;
   }

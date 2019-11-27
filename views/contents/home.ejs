@@ -16,13 +16,16 @@
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
     <!------ Include the above in your HEAD tag ---------->
-    <title>login</title>
+    <title>HOME</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body sytle="font-family : nanumUltra;">
     <div class="top-div">
-        <p style="position:absolute; color:rgba(255,255,255,0.5); margin-left:93vw;margin-top:1vw;">LOGOUT</p>
+            <form action="/users/logout" method="get">
+                <input type="submit" style="position:absolute; color:rgba(255,255,255,0.5); margin-left:93vw;margin-top:1vw; outline: 0; border:0; background:none;" value="SIGN OUT">
+            </form>
+
         <p style="color:white; font-size:2vw; margin-left:2vw; padding-top:3vw">[김지수]님 환영합니다.</p>
         <p style="color:white; font-size:1.5vw; margin-left:80vw;"> KNU MEDICAL INSTITUTE</p>
         <div
@@ -34,13 +37,13 @@
     </div>
     <div class="menu">
         <ul class="nav tabs" style="margin-left:1.6vw">
-            <li class="menu_p">내 정보</li>
+            <a href="/contents/home"><li class="menu_p">내 정보</li></a>
             <li class="menu_p_1">|</li>
-            <li class="menu_p">진료 기록</li>
+            <a href="/contents/checkups"><li class="menu_p">진료 기록</li></a>
             <li class="menu_p_1">|</li>
-            <li class="menu_p">처방 기록</li>
+            <a href="/contents/prescriptions"><li class="menu_p">처방 기록</li></a>
             <li class="menu_p_1">|</li>
-            <li class="menu_p">시술 및 수술</li>
+            <a href="/contents/operations"><li class="menu_p">시술 및 수술</li></a>
             <li class="menu_p_1">|</li>
             <li class="menu_p"><i class="fa fa-print" aria-hidden="true"
                     style="font-size:1.7vw; margin-top:-0.2vw;"></i></li>
@@ -48,8 +51,8 @@
     </div>
 
     <div style="position:absolute;font-size:10vw; margin-left: 2.5vw; top:9vw;">
-        <i class="fa fa-stethoscope" aria-hidden="true"></i>
-    </div>
+        <img src="/images/patient.png" alter="error" style="width:9vw; height:9vw">
+    </div> 
     <div style="margin-left:15vw; margin-top:2vw;   ">
         <span style="font-size:1.5vw">[김지수]</span><span style="font-size:1vw;">님의 정보입니다.</span>
     </div>
