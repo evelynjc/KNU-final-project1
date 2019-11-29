@@ -4,9 +4,9 @@
 
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
         id="bootstrap-css">
-    <link href="/stylesheets/write.css" rel="stylesheet">
+    <link href="/stylesheets/round.css" rel="stylesheet">
     <link href="/stylesheets/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet">
-    <script src="/javascripts/write.js"></script>
+    <script src="/javascripts/record.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -35,95 +35,17 @@
     </div>
 
     <div style="margin-left:9vw; margin-top:5vw;">
-        <span style="font-size:2vw;">[김지수]</span><span style="font-size:1.5vw;">님의 진료<span>
+        <span style="font-size:2vw;">[김지수]</span><span style="font-size:1.5vw;">님의 회진<span>
     </div>
     <div class="board">
-        <p style="margin-left:2vw; margin-top :2vw; font-size:1.5vw;">환자 정보</p>
-        <div class="table_div">
-            <table>
-                <tr>
-                    <th>일시</th>
-                    <th>진단명</th>
-                    <th>담당의</th>
-                    <th>진료부서</th>
-                    <th>기관</th>
-                </tr>
-                <tbody>
-                    <tr>
-                        <td>2017.02.15</td>
-                        <td>스트레스로 인한 우울증같은 상실감</td>
-                        <td>김지수</td>
-                        <td>정신과</td>
-                        <td>KNU MEDICAL INSTITUTE</td>
-                    </tr>
-                    <tr>
-                        <td>2018.03.07</td>
-                        <td>외상 후 스트레스 증후군</td>
-                        <td>김지수</td>
-                        <td>정신과</td>
-                        <td>KNU MEDICAL INSTITUTE</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <p style="margin-left:2vw; margin-top :2vw; font-size:1.5vw;">병 명</p>
-         <textarea name="review" autofocus required wrap="hard" class="text_box"></textarea>
-         <p style="margin-left:2vw; margin-top :2vw; font-size:1.5vw;">진단 및 소견</p>
-         <textarea name="review" autofocus required wrap="hard" class="text_box"></textarea>
-         <p style="margin-left:2vw; margin-top :2vw; font-size:1.5vw;">처 방</p>
-         <button class="menu_button" style="margin-left:72vw; position:absolute; top:63.5vw; height:1.5vw;font-size:1vw">입력</button>
+        <p style="margin-left:2vw; margin-top :2vw; font-size:1.5vw; margin-bottom:1.5vw;">활력 징후</p>
+        <span style="margin-left:8vw; margin-top :3vw; font-size:1.5vw;">맥 박</span>
+         <span style="margin-left:25vw; margin-top :3vw; font-size:1.5vw;">호 흡</span>
+         <span style="margin-left:25vw; margin-top :3vw; font-size:1.5vw;">체 온</span>
+         <p style="margin-left:2vw; margin-top :5vw; font-size:1.5vw;">특이사항</p>
          <textarea name="review" autofocus required wrap="hard" class="text_box"></textarea>
          <button class="menu_button" style="margin-left:63.5vw;">취소</button>
-         <button class="menu_button" style="margin-left:2vw;" onclick="javascript:openModal(300, 250)">완료</button>
+         <button class="menu_button" style="margin-left:2vw;" onclick="javascript:openModal(100,100)">완료</button>
     </div>
         <div>
         <footer sytle="font-family : nanumUltra;">
@@ -148,7 +70,7 @@
         <div id="modal_back">
                 <div id="modal">
                     <div>
-                    <a href="javascript:closeModal()";><img src="./send2.gif" style="width:300; height:200"/></a>
+                    <a href="javascript:closeModal()";><img src="/images/send2.gif" style="width:200; height:300"/></a>
                         <div style="text-align: center;">데이터를 엔진에 전송하는 중입니다.<br>
                         잠시만 기다려주세요.
                         </div>

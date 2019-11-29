@@ -7,7 +7,6 @@
     <link href="/stylesheets/home.css" rel="stylesheet">
     <link href="/stylesheets/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -44,7 +43,7 @@
             <li class="menu_p_1">|</li>
             <a href="/contents/operations"><li class="menu_p">시술 및 수술</li></a>
             <li class="menu_p_1">|</li>
-            <a href="/contents/rounds"><li class="menu_p">회진 기록</li></a>
+            <a href="/contents/round-records"><li class="menu_p">회진 기록</li></a>
             <li class="menu_p_1">|</li>
             <li class="menu_p"><i class="fa fa-print" aria-hidden="true"
                     style="font-size:1.7vw; margin-top:-0.2vw;"></i></li>
@@ -102,18 +101,20 @@
                         <th>기관</th>
                     </tr>
                     <tbody>
+                        <% for(var i=0;i<obj.rows.length; i++){ %>
                         <tr>
-                            <td>김환자</td>
-                            <td>남</td>
-                            <td>김지수</td>
-                            <td>3B</td>
-                            <td>204</td>
-                            <td>2016-09-12</td>
-                            <td>정신과</td>
-                            <td>일반</td>
-                            <td>퇴원</td>
+                            <td><% obj.rows[i].name %></td>
+                            <td><% obj.rows[i].sex %></td>
+                            <td><% obj.rows[i].attendant %></td>
+                            <td><% obj.rows[i].ward %></td>
+                            <td><% obj.rows[i].room %></td>
+                            <td><% obj.rows[i].date %></td>
+                            <td><% obj.rows[i].type %></td>
+                            <td><% obj.rows[i].condition %></td>
+                            <td><% obj.rows[i].institution %></td>
                             <td>KNU MEDICAL INSTITUTION</td>
                         </tr>
+                        <% } %>
                         <tr>
                             <td>최환자</td>
                             <td>남</td>
