@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 var ObjectId = Schema.Types.ObjectId;
 
 var operationsSchema = new Schema({
-    "patinetCode": ObjectId,
+    "patinetCode": String,
     "code": String,
     "date": String,
     "type": String,

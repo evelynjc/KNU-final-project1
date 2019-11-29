@@ -1,7 +1,12 @@
 const express = require('express');
 const router = express.Router();
-//const models = require('../models');
-//const crypto = require('crypto');
+const Userinfo = require('../models/userinfo');
+
+Userinfo.find({}, function(err, usrinfo){
+    if(err) console.log('usrinfo model error');
+    if(!usrinfo) console.log('usrinfo not found');
+    //console.log('usrinfo: '+usrinfo);
+});
 
 router.get('/', (req,res,next) => {
     res.redirect('/');
@@ -53,18 +58,6 @@ router.post('/login', async(req,res,next) => {
         }
         else{
             console.log('doctor id, login failed');
-            res.redirect('/users/login');
-        }
-    }
-    else if (inputid === user3id){
-        if(inputpw === user3pw){
-            console.log('login successful as a nurse');
-            req.session.userid = inputid;
-            req.session.typeMedStaff = inputid;
-            res.redirect('/contents/medical-staff');
-        }
-        else{
-            console.log('nurse id, login failed');
             res.redirect('/users/login');
         }
     }

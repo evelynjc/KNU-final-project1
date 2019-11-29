@@ -68,18 +68,13 @@ router.get('/home', (req,res,next) => {
     let sess = req.session;
     
     if(sess.userid && sess.typeUser){
-        Userinfo.findOne({id:sess.userid}, function(err, myidcode){
-            if(err) console.log('myid error');
-            if(!myidcode) console.log('myid code not found');
-            idobj = JSON.parse(JSON.stringify(myidcode));
-            myidcode = idobj._id;
-            PatientInfo.find({userid:myidcode}, function(err, result){
+            PatientInfo.find({userid:sess.userid}, function(err, result){
                 if(err) console.log('user-patientinfo error');
                 if(!result) console.log('user-patientinfo not found');
                 infoobj = JSON.parse(JSON.stringify(result));
-                console.log(result);
+		console.log('hi :');
+		console.log(infoobj[0].name);
                 res.render('contents/home', {obj: infoobj});
-            });
         });
     }
     else{

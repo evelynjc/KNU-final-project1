@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 var ObjectId = Schema.Types.ObjectId;
 
 var roundsSchema = new Schema({
-    "patientCode": ObjectId,
+    "patientCode": String,
     "time": String,
     "bodyTemp": String,
     "pulse": String,

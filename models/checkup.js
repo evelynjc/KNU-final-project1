@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 var ObjectId = Schema.Types.ObjectId;
 
 var checkupsSchema = new Schema({
-    "patinetCode": ObjectId,
+    "patinetCode": String,
     "code": String,
     "attendant": String,
     "medication": String,

@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 var ObjectId = Schema.Types.ObjectId;
 
 var patientinfoSchema = new Schema({
-    "userid": ObjectId,
+    "userid": String,
     "patientCode": String,
     "name": String,
     "sex": String,
