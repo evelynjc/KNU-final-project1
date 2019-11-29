@@ -109,6 +109,18 @@ router.get('/operations', (req,res,next) => {
     }
 });
 
+/* User Rounds Records */
+router.get('/round-records', (req,res,next) => {
+    let sess = req.session;
+    if(sess.userid && sess.typeUser){
+        res.render('contents/roundrecords');
+    }
+    else{
+        console.log('user page, access denied');
+        res.redirect('/users/login');
+    }
+});
+
 /* --------------------------------------------------------- */
 
 /* Medical Staff Home GET */
@@ -129,6 +141,41 @@ router.post('/medical-staff', (req,res,next) => {
     res.redirect('/');
 });
 
-/* Medical Staff Record GET */
+/* Rounds Record GET */
+router.get('/rounds', (req,res,next) => {
+    let sess = req.session;
+    if(sess.userid && sess.typeMedStaff){
+        res.render('contents/round');
+    }
+    else{
+        console.log('medical staff page, access denied');
+        res.redirect('/users/login');
+    }
+});
+
+/* Rounds Record POST */
+router.post('/rounds', (req,res,next) => {
+    console.log('round record form submitted');
+    res.redirect('/');
+});
+
+/* Checkups Record GET */
+router.get('/record', (req,res,next) => {
+    let sess = req.session;
+    if(sess.userid && sess.typeMedStaff){
+        res.render('contents/record');
+    }
+    else{
+        console.log('medical staff page, access denied');
+        res.redirect('/users/login');
+    }
+});
+
+/* Checkups Record POST */
+router.post('/record', (req,res,next) => {
+    console.log('checkup record form submitted');
+    res.redirect('/');
+});
+
 
 module.exports = router;

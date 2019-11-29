@@ -1,0 +1,4 @@
+*** API Documentation Page (Pillbox)
+https://dev.socrata.com/foundry/datadiscovery.nlm.nih.gov/crzr-uvwg
+
+https://pillbox.nlm.nih.gov/developers.html#pillbox-api

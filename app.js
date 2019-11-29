@@ -10,9 +10,6 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const contentsRouter = require('./routes/contents');
 
-const PORT = 8080;
-const HOST = 127.0.0.1;
-
 var app = express();
 
 // CONNECT TP MONGODB SERVER
