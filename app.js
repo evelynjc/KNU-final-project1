@@ -1,18 +1,30 @@
-var createError = require('http-errors');
+const createError = require('http-errors');
 const express = require('express');
-var path = require('path');
+const path = require('path');
 const cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const logger = require('morgan');
 const session = require('express-session');
+const mongoose = require('mongoose');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var contentsRouter = require('./routes/contents');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const contentsRouter = require('./routes/contents');
 
+const PORT = 8080;
+const HOST = 127.0.0.1;
 
 var app = express();
 
-// view engine setup
+// CONNECT TP MONGODB SERVER
+const db = mongoose.connection;
+db.on('error', console.error);
+db.on('open', () => {
+    // WHEN CONNECTED
+    console.log("Connected to mongod server");
+});
+mongoose.connect('mongodb://localhost/cdp1', { useNewUrlParser: true, useUnifiedTopology: true });
+
+// VIEW ENGINE SETUP
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -22,7 +34,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// session config
+// SESSION CONFIGUREATION
 app.use(session({
   key: 'key',
   secret: 'secret', // encrypt session val
@@ -32,6 +44,7 @@ app.use(session({
     maxAge: 24000 * 60 * 60 // 24hrs
   }
 }));
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter, session);
