@@ -14,7 +14,7 @@ const Userinfo = require('../models/userinfo');
 // CONFIGURE ROUTER TO USE bodyParser
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
-
+var checkupobj;
 Checkup.find({}, function(err, checkups){
     if(err) console.log('checkup model error');
     if(!checkups) console.log('checkup not found');
@@ -22,6 +22,7 @@ Checkup.find({}, function(err, checkups){
     //console.log(typeof(checkups));
     //console.log(checkups[0].date); //JSON.stringify()
     //console.log(checkups.length);
+    checkupobj = JSON.parse(JSON.stringify(checkups));
 });
 MedicalStaff.find({}, function(err, medstaff){
     if(err) console.log('medstaff model error');
@@ -56,6 +57,7 @@ Userinfo.find({}, function(err, usrinfo){
 
 /////////////////////
 
+var myname, idobj, myidcode,infoobj, checkupobj, presobj, operobj, roundrecobj;
 /* Black Bridge Path GET */
 router.get('/', (req,res,next) => {
     res.redirect('/');
@@ -64,8 +66,21 @@ router.get('/', (req,res,next) => {
 /* User Home GET */
 router.get('/home', (req,res,next) => {
     let sess = req.session;
+    
     if(sess.userid && sess.typeUser){
-        res.render('contents/home');
+        Userinfo.findOne({id:sess.userid}, function(err, myidcode){
+            if(err) console.log('myid error');
+            if(!myidcode) console.log('myid code not found');
+            idobj = JSON.parse(JSON.stringify(myidcode));
+            myidcode = idobj._id;
+            PatientInfo.find({userid:myidcode}, function(err, result){
+                if(err) console.log('user-patientinfo error');
+                if(!result) console.log('user-patientinfo not found');
+                infoobj = JSON.parse(JSON.stringify(result));
+                console.log(result);
+                res.render('contents/home', {obj: infoobj});
+            });
+        });
     }
     else{
         console.log('user page, access denied');
@@ -85,7 +100,7 @@ router.get('/checkups', (req,res,next) => {
     }
 });
 
-/* User Prescription Records */
+/* User Prescription Records GET */
 router.get('/prescriptions', (req,res,next) => {
     let sess = req.session;
     if(sess.userid && sess.typeUser){
@@ -97,7 +112,7 @@ router.get('/prescriptions', (req,res,next) => {
     }
 });
 
-/* User Operation Records */
+/* User Operation Records GET */
 router.get('/operations', (req,res,next) => {
     let sess = req.session;
     if(sess.userid && sess.typeUser){
@@ -109,7 +124,7 @@ router.get('/operations', (req,res,next) => {
     }
 });
 
-/* User Rounds Records */
+/* User Rounds Records GET */
 router.get('/round-records', (req,res,next) => {
     let sess = req.session;
     if(sess.userid && sess.typeUser){
