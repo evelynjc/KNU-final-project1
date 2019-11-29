@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+        id="bootstrap-css">
+    <link href="/stylesheets/write.css" rel="stylesheet">
+    <link href="/stylesheets/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet">
+    <script src="/javascripts/write.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <!------ Include the above in your HEAD tag ---------->
+    <title>진료 기록</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body sytle="font-family : nanumUltra;">
+    <div class="top-div">
+        <form action="/users/logout" method="get">
+            <input type="submit" style="position:absolute; color:rgba(255,255,255,0.5); margin-left:93vw;margin-top:1vw; outline: 0; border:0; background:none;" value="SIGN OUT">
+        </form>
+        <p style="color:white; font-size:2vw; margin-left:2vw; padding-top:3vw">[이채현]님 환영합니다.</p>
+        <p style="color:white; font-size:1.5vw; margin-left:80vw;"> KNU MEDICAL INSTITUTE</p>
+        <div
+            style="position : absolute; top:6.8vw;background-color:rgb(255, 80, 80); width:100%; height:0.1vw;margin-bottom:0.1vw">
+        </div>
+        <div
+            style="position : absolute; top:7vw;background-color:rgb(255, 80, 80); width:100%; height:0.4vw;margin-bottom:0.1vw">
+        </div>
+    </div>
+
+    <div style="margin-left:9vw; margin-top:5vw;">
+        <span style="font-size:2vw;">[김지수]</span><span style="font-size:1.5vw;">님의 진료<span>
+    </div>
+    <div class="board">
+        <p style="margin-left:2vw; margin-top :2vw; font-size:1.5vw;">환자 정보</p>
+        <div class="table_div">
+            <table>
+                <tr>
+                    <th>일시</th>
+                    <th>진단명</th>
+                    <th>담당의</th>
+                    <th>진료부서</th>
+                    <th>기관</th>
+                </tr>
+                <tbody>
+                    <tr>
+                        <td>2017.02.15</td>
+                        <td>스트레스로 인한 우울증같은 상실감</td>
+                        <td>김지수</td>
+                        <td>정신과</td>
+                        <td>KNU MEDICAL INSTITUTE</td>
+                    </tr>
+                    <tr>
+                        <td>2018.03.07</td>
+                        <td>외상 후 스트레스 증후군</td>
+                        <td>김지수</td>
+                        <td>정신과</td>
+                        <td>KNU MEDICAL INSTITUTE</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p style="margin-left:2vw; margin-top :2vw; font-size:1.5vw;">병 명</p>
+         <textarea name="review" autofocus required wrap="hard" class="text_box"></textarea>
+         <p style="margin-left:2vw; margin-top :2vw; font-size:1.5vw;">진단 및 소견</p>
+         <textarea name="review" autofocus required wrap="hard" class="text_box"></textarea>
+         <p style="margin-left:2vw; margin-top :2vw; font-size:1.5vw;">처 방</p>
+         <button class="menu_button" style="margin-left:72vw; position:absolute; top:63.5vw; height:1.5vw;font-size:1vw">입력</button>
+         <textarea name="review" autofocus required wrap="hard" class="text_box"></textarea>
+         <button class="menu_button" style="margin-left:63.5vw;">취소</button>
+         <button class="menu_button" style="margin-left:2vw;" onclick="javascript:openModal(300, 250)">완료</button>
+    </div>
+        <div>
+        <footer sytle="font-family : nanumUltra;">
+                <div
+                    style="position : absolute; bottom:6.8vw;background-color:rgb(255, 80, 80); width:100%; height:0.1vw;margin-bottom:0.1vw">
+                </div>
+                <div style="font-size:1.5vw; margin:1vw; margin-bottom:0.5vw;font-weight:100;">
+                    <p style="position: absolute; margin-left:65vw; margin-top:1.5vw"><i class="fa fa-info-circle"
+                            aria-hidden="true"></i> Information</p>
+                    <p style="position: absolute; margin-left:77vw; margin-top:1.5vw"><i class="fa fa-question-circle-o"
+                            aria-hidden="true"></i> Help</p>
+                    <p style="position: absolute; margin-left:85vw; margin-top:1.5vw"><i class="fa fa-shield"
+                            aria-hidden="true"></i> Policy</p>
+                    <p>2019 KNU Project <br> Team 3</p>
+            
+                </div>
+                <div style="font-size:0.8vw; margin-left:1vw;">
+                    Blockchain-linked <br> Medical Information Sharing System<br>
+                </div>
+            </footer>
+        </div>
+        <div id="modal_back">
+                <div id="modal">
+                    <div>
+                    <a href="javascript:closeModal()";><img src="./send2.gif" style="width:300; height:200"/></a>
+                        <div style="text-align: center;">데이터를 엔진에 전송하는 중입니다.<br>
+                        잠시만 기다려주세요.
+                        </div>
+                    </div>
+                </div>
+            </div>
+</body>
+
+</html>
