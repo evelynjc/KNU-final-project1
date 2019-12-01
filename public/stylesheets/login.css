@@ -76,12 +76,10 @@ body {
     height:3vw;
     font-size:1.2vw;
     color:white;
-    background-color: rgba(0,0,0,0.5);
-    outline:3px;
-    border:3;
+    background-color: rgb(255, 80, 80);
+    outline:0;
+    border:0;
     border-radius: 5px;
-    border-color : rgb(255, 80, 80);
-    outline-color : rgb(255, 80, 80);
 }
 .sign_button{
     width:9vw;

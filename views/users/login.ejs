@@ -32,17 +32,16 @@
     <div class="login-container">
         <div>
             <div class="login-form-1">
-                <h3>Login</h3>
+                <h3>Sign in</h3>
                 <form method="post" action="/users/login">
                     <div class="text_form">
-                        <input type="text" class="form-control_text" placeholder="ID" name='userid' />
+                        <input style="margin-top:1vw" type="text" class="form-control_text" placeholder="ID" name='userid' />
                     </div>
                     <div class="text_form">
                         <input type="password" class="form-control_text" placeholder="Password" name='userpw' />
                     </div>
-                    <a href="#" class="btnForgetPwd">비밀번호를 잊으셨나요?</a>
                     <div>
-                        <button type="submit" class="btnSubmit" onclick="javascript:openModal(350, 350)">LOGIN</button>
+                        <button type="submit" class="btnSubmit" onclick="javascript:openModal(350, 350)">SIGN IN</button>
                     </div>
                 </form>
 
@@ -62,7 +61,7 @@
 
         <% } %>
 
-        <button class="sign_button" onclick='location.href="/users/signup"'>SIGN UP</button>
+      <!-- <button class="sign_button" onclick='location.href="/users/signup"'>SIGN UP</button>--> 
 
     </div>
     <footer sytle="font-family : nanumUltra;">
