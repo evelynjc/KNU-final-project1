@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var ObjectId = Schema.Types.ObjectId;
 
 var prescriptionsSchema = new Schema({
     "patientCode": String,

@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var ObjectId = Schema.Types.ObjectId;
 
 var patientinfoSchema = new Schema({
     "userid": String,
@@ -14,7 +13,8 @@ var patientinfoSchema = new Schema({
     "date": String,
     "type": String,
     "condition": String,
-    "hash": String
+    "hash": String,
+    "department": String
 }, { collection: 'patientInfo' });
 
 module.exports = mongoose.model('patientinfo', patientinfoSchema);

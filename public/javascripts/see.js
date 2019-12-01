@@ -1,29 +1,18 @@
-window.onload = function () {
-
+window.onload = function() {
     var chart = new CanvasJS.Chart("chartContainer", {
         animationEnabled: true,
         scaleGridLineColor : "rgb(255,80,80)",
         theme: "light2",
+
         axisY:{
             includeZero: false
         },
         data: [{        
             type: "line",lineColor:"rgb(255,80,80)", color: "rgba(83, 223, 128, .6)",     
-            dataPoints: [    
-                { y: 61 },
-                { y: 62},
-                { y: 66},
-                { y: 81 },
-                { y: 90 },
-                { y: 75 },
-                { y: 63 },
-                { y: 80 },
-                { y: 88 },
-                { y: 75 },
-                { y: 84 },
-                { y: 67 }
-            ]
+	dataPoints:[{y:10},
+	{y:20}]
         }]
+
     });
     chart.render();
 
@@ -81,4 +70,4 @@ window.onload = function () {
     });
     chart2.render();
     
-    }
+}

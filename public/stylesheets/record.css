@@ -49,7 +49,7 @@ table {
 .board{
     position: absolute;
     background-color:#f2f2f2;
-    height:90vw;
+    height:110vw;
     width:80vw;
     margin-left:9vw;
     margin-top:2vw;
@@ -57,8 +57,6 @@ table {
 
 .text_box{
     margin-top:1vw;
-    width:76vw;
-    height:15vw;
     margin-left:2vw;
     text-align-last: left;
     font-size:1vw;
@@ -75,7 +73,7 @@ table {
 footer{
     font-family : nanumUltra;
     position:absolute;
-    bottom:-70vw;
+    bottom:-90vw;
     height:6.8vw;
     width:100%;
     background-color:rgb(255, 80, 80);
@@ -132,7 +130,7 @@ table th {
     border-radius: 5px;
 }
 
-#modal_back { position:absolute; top:0; left:0; width:98.9vw; height:117.6vw; display:none; background:rgba(0,0,0,0.5); }
+#modal_back { position:absolute; top:0; left:0; width:98.9vw; height:137.6vw; display:none; background:rgba(0,0,0,0.5); }
 
 	#modal { margin:40vw;background:#FFF; color:#000; border-radius:6px; box-shadow:0 5px 15px rgba(0,0,0,0.5); }
 

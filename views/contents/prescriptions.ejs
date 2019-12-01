@@ -23,7 +23,7 @@
         <form action="/users/logout" method="get">
             <input type="submit" style="position:absolute; color:rgba(255,255,255,0.5); margin-left:93vw;margin-top:1vw; outline: 0; border:0; background:none;" value="SIGN OUT">
         </form>
-        <p style="color:white; font-size:2vw; margin-left:2vw; padding-top:3vw">[김지수]님 환영합니다.</p>
+        <p style="color:white; font-size:2vw; margin-left:2vw; padding-top:3vw">[<%= userName %>]님 환영합니다.</p>
         <p style="color:white; font-size:1.5vw; margin-left:80vw;"> KNU MEDICAL INSTITUTE</p>
         <div
             style="position : absolute; top:6.8vw;background-color:rgb(255, 80, 80); width:100%; height:0.1vw;margin-bottom:0.1vw">
@@ -53,7 +53,7 @@
         <img src="/images/pill.png" alt="My Image" style="width:10vw;height:9vw;">
     </div>
     <div style="margin-left:15vw; margin-top:2vw;   ">
-        <span style="font-size:1.5vw">[김지수]</span><span style="font-size:1vw;">님의 처방정보입니다.</span>
+        <span style="font-size:1.5vw">[<%= userName %>]</span><span style="font-size:1vw;">님의 처방정보입니다.</span>
     </div>
     <div>
         <div>
@@ -91,70 +91,16 @@
                                 <th>비고</th>
                             </tr>
                             <tbody>
-                                <tr>
-                                    <td>2017.02.18</td>
-                                    <td>대충 우을증약</td>
-                                    <td>김지수</td>
-                                    <td>정신과</td>
-                                    <td>KNU MEDICAL INSTITUTE</td>
-                                    <td>식후 30분 3일복용</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
+				<% for(var i=0;i<obj.length; i++){ %>
+                        <tr>
+                            <td><%= obj[i].date %></td>
+                            <td><%= obj[i].medication %></td>
+                            <td><%= obj[i].attendant %></td>
+                            <td><%= obj[i].department%></td>
+                            <td><%= obj[i].institution %></td>
+                            <td><%= obj[i].remarks %></td>
+                        </tr>
+                        <% } %>
                             </tbody>
                         </table>
                     </div>

@@ -1,17 +1,16 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var ObjectId = Schema.Types.ObjectId;
 
 var checkupsSchema = new Schema({
-    "patinetCode": String,
+    "patientCode": String,
     "code": String,
+    "diagnosis": String,
     "attendant": String,
-    "medication": String,
     "department": String,
     "date": String,
     "institution": String,
-    "remarks": String,
-    "hash": String
+    "hash": String,
+    "remarks": String
 });
 
 module.exports = mongoose.model('checkup', checkupsSchema);
