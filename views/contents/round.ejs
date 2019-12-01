@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+     <meta charset="UTF-8">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
         id="bootstrap-css">
     <link href="/stylesheets/round.css" rel="stylesheet">
@@ -46,14 +46,14 @@
          <% } %>
          <p style="margin-left:2vw; margin-top :3vw; font-size:1.5vw;">특이사항</p>
          <form action="/contents/rounds" method="post">
-            <textarea name="remarks" autofocus required wrap="hard" class="text_box"></textarea>
+            <textarea name="remarks" autofocus required wrap="hard" class="text_box">없음</textarea>
             <% if(obj.length !=0) {%>
              <input type="hidden" name="pulse" value=<%= obj[0].pulse %>>
              <input type="hidden" name="respiration" value=<%= obj[0].respiration %>>
              <input type="hidden" name="bodyTemp" value=<%= obj[0].bodyTemp %>>
              <% } %>
              <button class="menu_button" style="margin-left:63.5vw;">취소</button>
-            <button type="submit" class="menu_button" style="margin-left:2vw;" onclick="javascript:openModal(100,100)">완료</button>
+            <button type="submit" class="menu_button" style="margin-left:2vw;" onclick="javascript:openModal(300,350)">완료</button>
         </form>
     </div>
         <div>
@@ -79,7 +79,7 @@
         <div id="modal_back">
                 <div id="modal">
                     <div>
-                    <a href="javascript:closeModal()";><img src="/images/send2.gif" style="width:200; height:300"/></a>
+                    <a href="javascript:closeModal()";><img src="/images/send2.gif"width="300"height="250"/></a>
                         <div style="text-align: center;">데이터를 엔진에 전송하는 중입니다.<br>
                         잠시만 기다려주세요.
                         </div>

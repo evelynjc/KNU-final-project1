@@ -227,9 +227,45 @@ router.get('/rounds', (req, res, next) => {
 /* Rounds Record POST */
 router.post('/rounds', (req, res, next) => {
     let sess = req.session;
-    console.log('round record form req received');
-    console.log(req.body);
-    res.redirect('/contents/medical-staff');
+    // console.log('checkup record form req received');
+    // console.log(req.body);
+    // res.redirect('/contents/medical-staff');
+    let dateObj = new Date();
+    let date = ("0" + dateObj.getDate()).slice(-2);
+    let month = ("0" + (dateObj.getMonth() + 1)).slice(-2);
+    let year = dateObj.getFullYear();
+    var h = addZero(dateObj.getHours());
+    var m = addZero(dateObj.getMinutes());
+    var dateNow = year + "." + month + "." + date + "-" + h + ":" + m ;
+
+
+    var reqObj = req.body;
+    var Pulse = reqObj.pulse;
+    var breath = reqObj.respiration;
+    var  BT= reqObj.bodyTemp;
+    var roRemarks = reqObj.remarks;
+    function addZero(i) {
+        if (i < 10) {
+          i = "0" + i;
+        }
+        return i;
+      }      
+      console.log(reqObj);
+
+    (function () {
+        PatientInfo.findOne( { patientCode: find_code }, function(err,thePatient) {
+            if (err) console.log('patientinfo error');
+            if (!thePatient) console.log("patientinfo result doesn't exist");
+            inst = thePatient.institution;
+            depart = thePatient.department;
+
+            Round.create({ patientCode: find_code, pulse:Pulse, time: dateNow, respiration:breath, bodyTemp:BT, hash: "", remarks: roRemarks }, (err, result) => {
+                if (err) console.log('checkup document create error');
+                if (!result) console.log("checkup document result doesn't exist");
+            });
+        });
+        res.redirect('/contents/medical-staff');
+    })();
 });
 
 /* Checkups Record GET */
