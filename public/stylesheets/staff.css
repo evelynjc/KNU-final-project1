@@ -113,7 +113,6 @@ table td,th{
 
 table tr:nth-child(even){background-color: #f2f2f2;}
 table tr:nth-child(odd){background-color: rgb(233, 233, 233);}
-table tr:hover {background-color: rgba(255, 80, 80,0.2);}
 table th {
   padding-top: 1vw;
   padding-bottom: 1vw;
@@ -130,3 +129,4 @@ table th {
     overflow: auto;
     border:none;
 }
+.highlight{ background-color: rgba(255, 80, 80,0.2);}

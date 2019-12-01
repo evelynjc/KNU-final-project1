@@ -2,7 +2,7 @@
 <html>
 
 <head>
-
+    <meta charset="UTF-8">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
         id="bootstrap-css">
     <link href="/stylesheets/staff.css" rel="stylesheet">
@@ -14,9 +14,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
-        <script>
-            function showPopup() { window.open("/contents/lookup", "lookup", "width=800, height=600, left=100, top=50"); }
-        </script>
+    <script>
+        function showPopup() { window.open("/contents/lookup", "lookup", "width=800, height=600, left=100, top=50"); }
+        $(document).ready(function(){
+            $("#keyword").keyup(function() {
+                var k = $(this).val();
+                $("#mytable > tbody > tr").hide();
+                var head = $("#mytable > thead > th");
+                var temp = $("#mytable > tbody > tr > td:nth-child(5n+2):contains('" + k + "')");
+                    $(head).parent().show();
+                    $(temp).parent().show();
+            })
+        });
+    </script>
     <!------ Include the above in your HEAD tag ---------->
     <title>Staff Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,7 +35,9 @@
 <body sytle="font-family : nanumUltra;">
     <div class="top-div">
         <form action="/users/logout" method="get">
-            <input type="submit" style="position:absolute; color:rgba(255,255,255,0.5); margin-left:93vw;margin-top:1vw; outline: 0; border:0; background:none;" value="SIGN OUT">
+            <input type="submit"
+                style="position:absolute; color:rgba(255,255,255,0.5); margin-left:93vw;margin-top:1vw; outline: 0; border:0; background:none;"
+                value="SIGN OUT">
         </form>
         <p style="color:white; font-size:2vw; margin-left:2vw; padding-top:3vw">[<%= userName %>]님 환영합니다.</p>
         <p style="color:white; font-size:1.5vw; margin-left:80vw;"> KNU MEDICAL INSTITUTE</p>
@@ -38,30 +50,31 @@
     </div>
 
     <div style="position:absolute;font-size:8vw; margin-left: 8.5vw; top:11vw;">
-            <i class="fa fa-user-md" aria-hidden="true"></i>
+        <i class="fa fa-user-md" aria-hidden="true"></i>
     </div>
     <div style="margin-left:17vw; margin-top:6vw;">
-        <span style="font-size:2vw;">[<%= userName %>]</span><p style="font-size:1.5vw;"><br><%= medobj[0].department %> 전문의<br><%= medobj[0].medCode %></p>
+        <span style="font-size:2vw;">[<%= userName %>]</span>
+        <p style="font-size:1.5vw;"><br><%= medobj[0].department %> 전문의<br><%= medobj[0].medCode %></p>
     </div>
     <div style="margin-left:9vw; margin-top:2vw;">
-            <span style="font-size:2vw;">[<%= medobj[0].department %>]</span><span style="font-size:1.5vw;">의 환자목록입니다.<span>
-        </div>
-    <div class ="board">
-    <form name="code" id="code" method="post" action="/contents/medical-staff" style="display:inline;">
-        <input type="hidden" name="type" value="">
-		<input type="hidden" name="pcode" value="">
-        	<button class="menu_button" id= "recordButton">진료</button>
-        	<button class="menu_button" id="roundButton">회진</button>
-        	<button class="menu_button" id="seeButton">조회</button>
-	</form>
-        <input class="search" type="text" id="myInput" onkeyup="myFunction()" placeholder="검색">
-        <button class="filter_button" style="font-size: 1vw;"><i class="fa fa-filter" aria-hidden="true" ></i></button>
+        <span style="font-size:2vw;">[<%= medobj[0].department %>]</span><span style="font-size:1.5vw;">의 환자목록입니다.<span>
+    </div>
+    <div class="board">
+        <form name="code" id="code" method="post" action="/contents/medical-staff" style="display:inline;">
+            <input type="hidden" name="type" value="">
+            <input type="hidden" name="pcode" value="">
+            <button class="menu_button" id="recordButton">진료</button>
+            <button class="menu_button" id="roundButton">회진</button>
+            <button class="menu_button" id="seeButton">조회</button>
+        </form>
+        <input class="search" type="text" id="keyword" placeholder="검색">
+        <button class="filter_button" style="font-size: 1vw;"><i class="fa fa-filter" aria-hidden="true"></i></button>
 
         <div class="table_div">
             <table id="mytable">
-                <tr>
+                <thead>
                     <th>환자번호</th>
-		    <th>이름</th>
+                    <th>이름</th>
                     <th>성별</th>
                     <th>담당의</th>
                     <th>병동</th>
@@ -71,54 +84,62 @@
                     <th>구분</th>
                     <th>상태</th>
                     <th>기관</th>
-                </tr>
+                </thead>
                 <tbody>
-		                        <% for(var i=0;i<obj.length; i++){ %>
-                        <tr>
-			    <td><%= obj[i].patientCode %></td>
-                            <td><%= obj[i].name %></td>
-                            <td><%= obj[i].sex %></td>
-                            <td><%= obj[i].attendant %></td>
-                            <td><%= obj[i].ward %></td>
-                            <td><%= obj[i].room %></td>
-                            <td><%= obj[i].date %></td>
-                            <td><%= obj[i].department %></td>
-                            <td><%= obj[i].type %></td>
-                            <td><%= obj[i].condition %></td>
-                            <td><%= obj[i].institution %></td>
-                        </tr>
-                        <% } %>
+                    <% for(var i=0;i<obj.length; i++){ %>
+                    <tr>
+                        <td><%= obj[i].patientCode %></td>
+                        <td><%= obj[i].name %></td>
+                        <td><%= obj[i].sex %></td>
+                        <td><%= obj[i].attendant %></td>
+                        <td><%= obj[i].ward %></td>
+                        <td><%= obj[i].room %></td>
+                        <td><%= obj[i].date %></td>
+                        <td><%= obj[i].department %></td>
+                        <td><%= obj[i].type %></td>
+                        <td><%= obj[i].condition %></td>
+                        <td><%= obj[i].institution %></td>
+                    </tr>
+                    <% } %>
                 </tbody>
             </table>
-		<script>
-		var data;
-		 $("#mytable tr").click(function(){
-			var tr = $(this);
-			var td = tr.children();
-			data=td.eq(0).text();
-			console.log("data : " +data);
-		});
-		$("#recordButton").click(function(){
-            document.code.pcode.value=data;
-            document.code.type.value=1;
-			$('#code').submit();
-			$(location).attr('href','/contents/records');
-        });
-        $("#roundButton").click(function(){
-            document.code.pcode.value=data;
-            document.code.type.value=2;
-			$('#code').submit();
-			$(location).attr('href','/contents/rounds');
-        });	
-        $("#seeButton").click(function(){
-            document.code.pcode.value=data;
-            document.code.type.value=3;
-            showPopup();
-			$('#code').submit();
+            <script>
+                var data;
+                var selected=-1;
+                var color;
+                $("#mytable tr").click(function () {
+                    var tr = $(this);
+                    var td = tr.children();
+                    data = td.eq(0).text();
+                    if(selected !=-1){
+                        selected.css('background-color',color);
+                    }
+                    color = $(this).css('background-color');
+                    selected = $(this);
+                    $(this).css('background-color','rgba(255,80,80,0.2)')
+                    console.log("data : " + data);
+                });
+                $("#recordButton").click(function () {
+                    document.code.pcode.value = data;
+                    document.code.type.value = 1;
+                    $('#code').submit();
+                    $(location).attr('href', '/contents/records');
+                });
+                $("#roundButton").click(function () {
+                    document.code.pcode.value = data;
+                    document.code.type.value = 2;
+                    $('#code').submit();
+                    $(location).attr('href', '/contents/rounds');
+                });
+                $("#seeButton").click(function () {
+                    document.code.pcode.value = data;
+                    document.code.type.value = 3;
+                    showPopup();
+                    $('#code').submit();
 
-		});				
-		</script>
-            </div>
+                });				
+            </script>
+        </div>
     </div>
 </body>
 <footer sytle="font-family : nanumUltra;">
