@@ -59,6 +59,8 @@ table {
     margin-top:1vw;
     margin-left:2vw;
     text-align-last: left;
+    width:76vw;
+    height: 15vw;
     font-size:1vw;
 }
 
@@ -132,6 +134,6 @@ table th {
 
 #modal_back { position:absolute; top:0; left:0; width:98.9vw; height:137.6vw; display:none; background:rgba(0,0,0,0.5); }
 
-	#modal { margin:40vw;background:#FFF; color:#000; border-radius:6px; box-shadow:0 5px 15px rgba(0,0,0,0.5); }
+	#modal { margin-left:40vw; margin-top:80vw;background:#FFF; color:#000; border-radius:6px; box-shadow:0 5px 15px rgba(0,0,0,0.5); }
 
 	#modal a { color:#000; align-items: center;}

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
+const jsonfile = require('jsonfile');
 
 const Checkup = require('../models/checkup');
 const MedicalStaff = require('../models/medstaff');
@@ -198,6 +199,8 @@ router.post('/medical-staff', (req, res, next) => {
         res.redirect('/contents/record');
     else if (req.body.type === "2")
         res.redirect('/contents/rounds');
+    else if (req.body.type === "3")
+        res.redirect('/contents/operation-records');
     else
         res.redirect('/contents/medical-staff');
 });
@@ -207,14 +210,16 @@ router.get('/rounds', (req, res, next) => {
     let sess = req.session;
     if (sess.userid && sess.typeMedStaff) {
         PatientInfo.findOne({ patientCode: find_code }, function (err, tmp) {
-            Round.find({ patientCode: find_code }, function (err, result) {
-                if (err) console.log('user-checkups error');
-                if (!result) console.log('user-checksup info not found');
-                console.log(result);
-                console.log(tmp);
-                var sign = JSON.parse(JSON.stringify(result));
-                console.log(sign);
-                res.render('contents/round', { obj: sign, userName: sess.name, pname: tmp.name });
+            let file = 'uploads/' + find_code + '.json';
+            var jsonLine;
+            jsonfile.readFile(file, (err, obj) => {
+                if (err) console.log(err);
+                //console.dir(obj);
+                let jsonArr = JSON.parse(JSON.stringify(obj));
+                let index = Math.round(Math.random() * 10) % jsonArr.length;
+                jsonLine = jsonArr[index];
+                console.log(jsonLine);
+                res.render('contents/round', { obj: jsonLine, userName: sess.name, pname: tmp.name });
             });
         });
     }
@@ -236,30 +241,30 @@ router.post('/rounds', (req, res, next) => {
     let year = dateObj.getFullYear();
     var h = addZero(dateObj.getHours());
     var m = addZero(dateObj.getMinutes());
-    var dateNow = year + "." + month + "." + date + "-" + h + ":" + m ;
+    var dateNow = year + "." + month + "." + date + "-" + h + ":" + m;
 
 
     var reqObj = req.body;
     var Pulse = reqObj.pulse;
     var breath = reqObj.respiration;
-    var  BT= reqObj.bodyTemp;
+    var BT = reqObj.bodyTemp;
     var roRemarks = reqObj.remarks;
     function addZero(i) {
         if (i < 10) {
-          i = "0" + i;
+            i = "0" + i;
         }
         return i;
-      }      
-      console.log(reqObj);
+    }
+    console.log(reqObj);
 
     (function () {
-        PatientInfo.findOne( { patientCode: find_code }, function(err,thePatient) {
+        PatientInfo.findOne({ patientCode: find_code }, function (err, thePatient) {
             if (err) console.log('patientinfo error');
             if (!thePatient) console.log("patientinfo result doesn't exist");
             inst = thePatient.institution;
             depart = thePatient.department;
 
-            Round.create({ patientCode: find_code, pulse:Pulse, time: dateNow, respiration:breath, bodyTemp:BT, hash: "", remarks: roRemarks }, (err, result) => {
+            Round.create({ patientCode: find_code, pulse: Pulse, time: dateNow, respiration: breath, bodyTemp: BT, hash: "", remarks: roRemarks }, (err, result) => {
                 if (err) console.log('checkup document create error');
                 if (!result) console.log("checkup document result doesn't exist");
             });
@@ -273,12 +278,20 @@ router.get('/record', (req, res, next) => {
     let sess = req.session;
     if (sess.userid && sess.typeMedStaff) {
         PatientInfo.find({ patientCode: find_code }, function (err, result) {
-            if (err) console.log('user-checkups error');
-            if (!result) console.log('user-checksup info not found');
-            console.log(result);
-            checkupobj = JSON.parse(JSON.stringify(result));
-            console.log(checkupobj);
-            res.render('contents/record', { obj: checkupobj, userName: sess.name });
+            if (err) console.log('user-info error');
+            if (!result) console.log('user-info not found');
+            infoobj = JSON.parse(JSON.stringify(result));
+            Checkup.find({ patientCode: find_code }, function (err, p_check) {
+                if (err) console.log('user-checkups error');
+                if (!result) console.log('user-checksup info not found');
+                checkobj = JSON.parse(JSON.stringify(p_check));
+                Prescription.find({ patientCode: find_code }, function (err, p_pre) {
+                    if (err) console.log('user-prescription error');
+                    if (!p_pre) console.log('user-prescription info not found');
+                    var preobj = JSON.parse(JSON.stringify(p_pre));
+                    res.render('contents/record', { obj: infoobj, userName: sess.name, list: checkobj, pre: preobj });
+                });
+            });
         });
     }
     else {
@@ -291,7 +304,7 @@ router.get('/record', (req, res, next) => {
 router.post('/record', (req, res, next) => {
     let sess = req.session;
     // console.log('checkup record form req received');
-    // console.log(req.body);
+    console.log(req.body);
     // res.redirect('/contents/medical-staff');
     let dateObj = new Date();
     let date = ("0" + dateObj.getDate()).slice(-2);
@@ -309,20 +322,23 @@ router.post('/record', (req, res, next) => {
     var inst;
 
     (function () {
-        PatientInfo.findOne( { patientCode: pcode }, function(err,thePatient) {
+        PatientInfo.findOne({ patientCode: pcode }, function (err, thePatient) {
             if (err) console.log('patientinfo error');
             if (!thePatient) console.log("patientinfo result doesn't exist");
             inst = thePatient.institution;
             depart = thePatient.department;
-
-            Checkup.create({ patientCode: pcode, diagnosis: diagno, date: dateNow, attendant: sess.name, department: depart, institution: inst, hash: "", remarks: chRemarks }, (err, result) => {
-                if (err) console.log('checkup document create error');
-                if (!result) console.log("checkup document result doesn't exist");
-            });
-            Prescription.create({ patientCode: pcode, attendant: sess.name, medication: presc, department: depart, date: dateNow, institution: inst, remarks: prRemarks, hash: "" }, (err, result) => {
-                if (err) console.log('prescription document create error');
-                if (!result) console.log("prescription document result doesn't exist");
-            });
+            if (diagno != " " || chRemarks != " ") {
+                Checkup.create({ patientCode: pcode, diagnosis: diagno, date: dateNow, attendant: sess.name, department: depart, institution: inst, hash: "", remarks: chRemarks }, (err, result) => {
+                    if (err) console.log('checkup document create error');
+                    if (!result) console.log("checkup document result doesn't exist");
+                });
+            }
+            if (presc != " " || prRemarks != " ") {
+                Prescription.create({ patientCode: pcode, attendant: sess.name, medication: presc, department: depart, date: dateNow, institution: inst, remarks: prRemarks, hash: "" }, (err, result) => {
+                    if (err) console.log('prescription document create error');
+                    if (!result) console.log("prescription document result doesn't exist");
+                });
+            }
         });
         res.redirect('/contents/medical-staff');
     })();
@@ -359,5 +375,71 @@ router.get('/lookup', (req, res, next) => {
         res.redirect('/users/login');
     }
 });
+// operationRecord GET
+router.get('/operation-records', (req, res, next) => {
+    let sess = req.session;
+    if (sess.userid && sess.typeMedStaff) {
+        PatientInfo.find({ patientCode: find_code }, function (err, p_list) {
+            if (err) console.log('user-patientinfo error');
+            if (!p_list) console.log('user-patient info not found');
+            Operation.find({ patientCode: find_code }, function (err, result) {
+                if (err) console.log('user-checkups error');
+                if (!result) console.log('user-checksup info not found');
+                res.render('contents/operrecord', { obj: p_list, userName: sess.name, operobj: result });
+            });
+        });
+    }
+    else {
+        console.log('user page, access denied');
+        res.redirect('/users/login');
+    }
+});
 
+/* Operatoin Record POST */
+router.post('/operation-records', (req, res, next) => {
+    let sess = req.session;
+    // console.log('checkup record form req received');
+    // console.log(req.body);
+    // res.redirect('/contents/medical-staff');
+    let dateObj = new Date();
+    let date = ("0" + dateObj.getDate()).slice(-2);
+    let month = ("0" + (dateObj.getMonth() + 1)).slice(-2);
+    let year = dateObj.getFullYear();
+    var dateNow = year + "." + month + "." + date;
+
+    var reqObj = req.body;
+    var pcode = reqObj.pcode;
+    var Type = reqObj.ptype;
+    var pcondition = reqObj.pcondition;
+    var Ward = reqObj.ward;
+    var Room = reqObj.room;
+    var opertype = reqObj.opertype;
+    var oper = reqObj.operation;
+    var Remarks = reqObj.remarks;
+    var depart;
+    var inst;
+    var pname;
+    var psex;
+
+    console.log(req.body);
+    PatientInfo.findOne({ patientCode: pcode }, function (err, thePatient) {
+        if (err) console.log('patientinfo error');
+        if (!thePatient) console.log("patientinfo result doesn't exist");
+        inst = thePatient.institution;
+        depart = thePatient.department;
+        pname = thePatient.name;
+        psex = thePatient.sex;
+        pid = thePatient.userid;
+            PatientInfo.create({ userid: pid, patientCode: pcode, name: pname, sex: psex, attendant: sess.name, ward: Ward, room: Room, date: dateNow, department: depart, type: Type, condition: pcondition, institution: inst, hash: "" }, (err, result) => {
+                if (err) console.log('checkup document create error');
+                if (!result) console.log("checkup document result doesn't exist");
+                Operation.create({ patientCode: pcode, type: opertype, operation: oper, attendant: sess.name, department: depart, date: dateNow, institution: inst, remarks: Remarks, hash: "" }, (err, result) => {
+                    if (err) console.log('prescription document create error -> ' + err);
+                    if (!result) console.log("prescription document result doesn't exist");
+                    res.redirect('/contents/medical-staff');
+                });
+            })
+
+    });
+});
 module.exports = router;

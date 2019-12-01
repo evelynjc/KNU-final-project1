@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+        id="bootstrap-css">
+    <link href="/stylesheets/operrecord.css" rel="stylesheet">
+    <link href="/stylesheets/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet">
+    <script src="/javascripts/record.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <!------ Include the above in your HEAD tag ---------->
+    <title>진료 기록</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body sytle="font-family : nanumUltra;">
+    <div class="top-div">
+        <form action="/users/logout" method="get">
+            <input type="submit"
+                style="font-size:1vw;position:absolute; color:rgba(255,255,255,0.5); margin-left:93vw;margin-top:1vw; outline: 0; border:0; background:none;"
+                value="SIGN OUT">
+        </form>
+        <p style="color:white; font-size:2vw; margin-left:2vw; padding-top:3vw"><%= userName %>님 환영합니다.</p>
+        <p style="color:white; font-size:1.5vw; margin-left:80vw;"> KNU MEDICAL INSTITUTE</p>
+        <div
+            style="position : absolute; top:6.8vw;background-color:rgb(255, 80, 80); width:100%; height:0.1vw;margin-bottom:0.1vw">
+        </div>
+        <div
+            style="position : absolute; top:7vw;background-color:rgb(255, 80, 80); width:100%; height:0.4vw;margin-bottom:0.1vw">
+        </div>
+    </div>
+
+    <div style="margin-left:9vw; margin-top:5vw;">
+        <span style="font-size:2vw;"><%= obj[0].name %></span><span style="font-size:1.5vw;">님의 진료<span>
+    </div>
+    <div class="board">
+        <div class="table_div">
+            <p style="margin-top :2vw; font-size:1.5vw;margin-bottom: 1vw;">환자 정보</p>
+            <table>
+                <tr>
+                    <th>이름</th>
+                    <th>성별</th>
+                    <th>담당의</th>
+                    <th>병동</th>
+                    <th>병실</th>
+                    <th>입원일</th>
+                    <th>입원부서</th>
+                    <th>구분</th>
+                    <th>상태</th>
+                    <th>기관</th>
+                </tr>
+                <tbody>
+                    <% for(var i=0;i<obj.length; i++){ %>
+                    <tr>
+                        <td><%= obj[i].name %></td>
+                        <td><%= obj[i].sex %></td>
+                        <td><%= obj[i].attendant %></td>
+                        <td><%= obj[i].ward %></td>
+                        <td><%= obj[i].room %></td>
+                        <td><%= obj[i].date %></td>
+                        <td><%= obj[i].department %></td>
+                        <td><%= obj[i].type %></td>
+                        <td><%= obj[i].condition %></td>
+                        <td><%= obj[i].institution %></td>
+                    </tr>
+                    <% } %>
+                    <% if(obj.length==0){ %>
+                            <tr>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                            <% } %>
+                </tbody>
+            </table>
+            <p style="margin-top :2vw; font-size:1.5vw;margin-bottom: 1vw;">시술 및 수술 정보</p>
+            <table>
+                <tr>
+                    <th>일시</th>
+                    <th>구분</th>
+                    <th>시술내용</th>
+                    <th>담당의</th>
+                    <th>기관</th>
+                    <th>비고</th>
+                </tr>
+                <tbody>
+                    <% for(var i=0;i<operobj.length; i++){ %>
+                        <tr>
+                            <td><%= operobj[i].date %></td>
+                            <td><%= operobj[i].type %></td>
+                            <td><%= operobj[i].operation %></td>
+                            <td><%= operobj[i].attendant%></td>
+                            <td><%= operobj[i].institution %></td>
+                            <td><%= operobj[i].remarks %></td>
+                        </tr>
+                    <% } %>
+                    <% if(operobj.length==0){ %>
+                        <tr>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                        <% } %>
+                </tbody>
+            </table>
+        </div>
+        <form method="post" actoin="/contents/operrecord" id="record">
+            <input type="hidden" name="pcode" value=<%= obj[0].patientCode %>>
+            <p style="margin-left:2vw; margin-top :2vw; font-size:1.5vw; margin-bottom: 0.5vw;">입원 정보</p>
+            <span style="margin-left:2vw;font-size:1vw">타입</span>
+            <textarea form="record" name="ptype" autofocus required wrap="hard" class="m_text_box" value=""></textarea>
+            <span style="margin-left:2vw;font-size:1vw">상태</span>
+            <textarea form="record" name="pcondition" autofocus required wrap="hard" class="m_text_box" value=""></textarea> 
+            <span style="margin-left:2vw;font-size:1vw">병동</span>
+            <textarea form="record" name="ward" autofocus required wrap="hard" class="m_text_box" value=""></textarea>
+            <span style="margin-left:2vw;font-size:1vw">병실</span>
+            <textarea form="record" name="room" autofocus required wrap="hard" class="m_text_box" value=""></textarea>
+            <p style="margin-left:2vw; margin-top :2vw; font-size:1.5vw;">시술 및 내용</p>
+            <span style="margin-left:2vw;font-size:1vw">구분</span>
+            <textarea form="record" name="opertype" autofocus required wrap="hard" class="m_text_box" value=""></textarea>
+            <textarea form="record" name="operation" autofocus required wrap="hard" class="text_box" value=""></textarea>
+            <p style="margin-left:2vw; margin-top :2vw; font-size:1.5vw;">특이사항</p>
+            <textarea form="record" name="remarks" autofocus required wrap="hard" class="text_box" value=""></textarea>
+            <button class="menu_button" style="margin-left:63.5vw;" onclick="location.href='/contents/medical-staff'">취소</button>
+            <button type="submit" class="menu_button" style="margin-left:2vw;"
+                onclick="javascript:openModal(350, 350)">완료</button>
+        </form>
+    </div>
+
+    <div>
+        <footer sytle="font-family : nanumUltra;">
+            <div
+                style="position : absolute; bottom:6.8vw;background-color:rgb(255, 80, 80); width:100%; height:0.1vw;margin-bottom:0.1vw">
+            </div>
+            <div style="font-size:1.5vw; margin:1vw; margin-bottom:0.5vw;font-weight:100;">
+                <p style="position: absolute; margin-left:65vw; margin-top:1.5vw"><i class="fa fa-info-circle"
+                        aria-hidden="true"></i> Information</p>
+                <p style="position: absolute; margin-left:77vw; margin-top:1.5vw"><i class="fa fa-question-circle-o"
+                        aria-hidden="true"></i> Help</p>
+                <p style="position: absolute; margin-left:85vw; margin-top:1.5vw"><i class="fa fa-shield"
+                        aria-hidden="true"></i> Policy</p>
+                <p>2019 KNU Project <br> Team 3</p>
+
+            </div>
+            <div style="font-size:0.8vw; margin-left:1vw;">
+                Blockchain-linked <br> Medical Information Sharing System<br>
+            </div>
+        </footer>
+    </div>
+    <div id="modal_back">
+        <div id="modal">
+            <div>
+                <a href="javascript:closeModal()" ;><img src="/images/send2.gif" width="350" height="300" /></a>
+                <div style="text-align: center;">데이터를 엔진에 전송하는 중입니다.<br>
+                    잠시만 기다려주세요.
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

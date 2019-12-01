@@ -75,14 +75,6 @@ table {
     border-radius: 5px;
 }
 
-.filter_button{
-    width:2vw;
-    height:2vw;
-    margin-left:33vw;
-    position: absolute;
-    top:4vw;
-}
-
 footer{
     font-family : nanumUltra;
     position:absolute;
@@ -92,9 +84,9 @@ footer{
     background-color:rgb(255, 80, 80);
 }
 
-.search{
+.search{    
     font-family : nanumUltra;
-    margin-left: 17vw; position:absolute; top:4vw;width:15vw;height: 2vw;
+    margin-left: 12vw; position:absolute; top:4vw;width:15vw;height: 2vw;
                  background-color : rgb(218, 218, 218); border:0.05vw solid black;
 }
 

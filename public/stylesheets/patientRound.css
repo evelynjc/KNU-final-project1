@@ -1,0 +1,239 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+a:hover{ text-decoration:none } 
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+.top-div { 
+    background: url(/images/top_back.jpg); 
+    background-size: cover;
+    height: 7vw;
+  }
+
+.menu{
+    background:url(/images/menu.png);
+    margin-left:50.9vw;
+    height:4vw;
+    width:48vw;
+    font-family : nanumUltra;
+}
+
+.menu_p{
+    position:relative;
+    margin-top:1.2vw;
+    margin-left:1.5vw;
+    font-size:1.3vw;
+    color:white;
+}
+
+.menu_p_1{
+    position:relative;
+    margin-top:1.2vw;
+    margin-left:1vw;
+    font-size:1.3vw;
+    color:white;
+}
+
+.text_form{
+    margin-left:0.5vw;
+    margin-bottom:0.7vw;
+    margin-top:1vw;
+}
+
+.search{
+    font-family : nanumUltra;
+    margin-left: 60vw; position:absolute; top:15.3vw;width:15vw;height: 1.7vw;
+                border:none; background-color : rgb(228, 226, 226);
+}
+
+.search::placeholder{
+    font-family : nanumUltra;
+    font-size:0.8vw;
+    color:rgba(0, 0, 0,0.4);
+}
+
+.form-control_filter{
+    height:1.7vw;
+    width:8vw;
+    background-color:rgb(228, 226, 226);
+    font-size:0.8vw;
+    padding:0;
+    border:none;
+    color:rgba(0, 0, 0,0.4);
+}
+
+.form-control_text{
+    width:20vw;
+    height:2.5vw;
+    font-size:1vw;
+    border-color: rgba(255, 80, 80,0.5);
+    box-shadow: 1px 1px 1px rgba(255, 80, 80,0.5);
+    border-radius: 7px;
+    padding:0.5vw;
+    color:rgba(0,0,0,0.5);
+}
+
+.form-control_text::placeholder{
+    color:rgba(0,0,0,0.2);
+}
+
+.btnSubmit{
+    font-weight: 10vw  ;
+    margin-left : 16vw;
+    margin-top : 1vw;
+    font-size:1vw;
+    color: #282726;
+    background-color:transparent;
+    border: none;
+    letter-spacing: 0.01vw;
+    border-radius: 0;
+    font-weight: 100;
+}
+.btnForgetPwd{
+    color: rgb(113, 175, 251);
+    font-weight: 600;
+    text-decoration: none;
+    font-size:0.7vw;
+    margin-left:1.1vw;
+    text-decoration: underline;
+}
+.btnForgetPwd:hover{
+    text-decoration:none;
+    color:rgb(255, 80, 80);
+}
+
+.footer_home{
+    font-family : nanumUltra;
+    position:absolute;
+    bottom:-100vw;
+    height:6.8vw;
+    width:100%;
+    background-color:rgb(255, 80, 80);
+}
+
+footer{
+    font-family : nanumUltra;
+    position:absolute;
+    bottom:-7vw;
+    height:6.8vw;
+    width:100%;
+    background-color:rgb(255, 80, 80);
+}
+
+table{
+    font-family : nanumUltra;
+    margin-left:3vw;
+    text-align: center;
+    width: 70vw;
+}
+
+table td,th{
+    font-size:0.8vw;
+    padding: 0.8vw;
+    height:2vw;
+    border:2px solid white;
+}
+
+table tr:nth-child(even){background-color: #f2f2f2;}
+table tr:nth-child(odd){background-color: rgb(233, 233, 233);}
+table tr:hover {background-color: rgba(255, 80, 80,0.2);}
+table th {
+  padding-top: 1vw;
+  padding-bottom: 1vw;
+  text-align: center;
+  background-color: rgb(81, 81, 81);
+  font-size:1.2vw;
+  color: white;
+}
+
+nav > .nav.nav-tabs{
+
+    border: none;
+      color:#fff;
+      background:#272e38;
+      border-radius:0;
+    width:20vw;
+   margin-left:13vw;
+   margin-top:1vw;
+   font-family : nanumUltra;
+  }
+
+  nav > div a.nav-item.nav-link,
+nav > div a.nav-item.nav-link.active
+{
+  border: none; 
+    color:rgba(0, 0, 0,0.5);
+    background:white;
+    border-radius:0;
+}
+nav > div a.nav-item.nav-link.active:after
+ {
+    border: none; 
+    color:rgb(255, 80, 80);
+    background:white;
+    border-radius:0;
+}
+nav > div a.nav-item.nav-link:hover,
+nav > div a.nav-item.nav-link:focus
+{
+    border: none; 
+    color:rgb(255, 80, 80);
+    background:white;
+    border-radius:0;
+}
+
+.board{
+    position: absolute;
+    background-color:#f2f2f2;
+    height:80vw;
+    width:75vw;
+    margin-left:13vw;
+    margin-top:2vw;
+}
+
+.table_div{
+    margin-top:1vw;
+    width: 77vw; height:20vw;
+    margin-left:12vw;
+    overflow: auto;
+    border:none;
+}

@@ -29,7 +29,7 @@ router.post('/login', async (req, res, next) => {
         let body = req.body;
         let inputid = body.userid;
         let inputpw = body.userpw;
-        
+
         Userinfo.findOne({ id: inputid, password: inputpw }, (err, usrinfo) => {
             if (err) {
                 console.log('usrinfo model error');
@@ -53,23 +53,44 @@ router.post('/login', async (req, res, next) => {
                             }
                             else if (!medresult) {
                                 console.log('user-medstaff not found');
-                                res.redirect('/users/login');
+                                res.send('/users/login');
                             }
                             else {
-                                // signed in as medical staff
-                                req.session.typeMedStaff = inputid;
-                                req.session.name = medresult.name;
-                                console.log('sess name: ' + req.session.name);
-                                res.redirect('/contents/medical-staff');
+                                //signed in as medical staff
+                                var API_CALL = require('./api-request')('blockchain');
+                                var hash = usrinfo.hash;
+                                API_CALL.query(hash, (err, apiResult) => {
+                                    if (!err) {
+                                        //res.json(apiResult);
+                                        req.session.typeMedStaff = inputid;
+                                        req.session.name = medresult.name;
+                                        console.log('sess name: ' + req.session.name);
+                                        res.redirect('/contents/medical-staff');
+                                    }
+                                    else {
+                                        res.json(err);
+                                    }
+                                });
                             }
                         });
                     }
                     else {
                         // signed in as an average user
-                        req.session.typeUser = inputid;
-                        req.session.name = result.name;
-                        console.log('sess name: ' + req.session.name);
-                        res.redirect('/contents/home');
+                        var API_CALL = require('./api-request')('blockchain');
+                        var hash = usrinfo.hash;
+                        API_CALL.query(hash, (err, apiResult) => {
+                            if (!err) {
+                                //res.json(apiResult);
+                                req.session.typeUser = inputid;
+                                req.session.name = result.name;
+                                console.log('sess name: ' + req.session.name);
+                                res.redirect('/contents/home');
+                            }
+                            else {
+                                res.json(err);
+                                
+                            }
+                        });
                     }
                 });
             }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
@@ -21,9 +22,11 @@
 <body sytle="font-family : nanumUltra;">
     <div class="top-div">
         <form action="/users/logout" method="get">
-            <input type="submit" style="position:absolute; color:rgba(255,255,255,0.5); margin-left:93vw;margin-top:1vw; outline: 0; border:0; background:none;" value="SIGN OUT">
+            <input type="submit"
+                style="font-size:1vw;position:absolute; color:rgba(255,255,255,0.5); margin-left:93vw;margin-top:1vw; outline: 0; border:0; background:none;"
+                value="SIGN OUT">
         </form>
-        <p style="color:white; font-size:2vw; margin-left:2vw; padding-top:3vw">[<%= userName %>]님 환영합니다.</p>
+        <p style="color:white; font-size:2vw; margin-left:2vw; padding-top:3vw"><%= userName %>님 환영합니다.</p>
         <p style="color:white; font-size:1.5vw; margin-left:80vw;"> KNU MEDICAL INSTITUTE</p>
         <div
             style="position : absolute; top:6.8vw;background-color:rgb(255, 80, 80); width:100%; height:0.1vw;margin-bottom:0.1vw">
@@ -34,15 +37,25 @@
     </div>
     <div class="menu">
         <ul class="nav tabs" style="margin-left:1.6vw">
-            <a href="/contents/home"><li class="menu_p">내 정보</li></a>
+            <a href="/contents/home">
+                <li class="menu_p">내 정보</li>
+            </a>
             <li class="menu_p_1">|</li>
-            <a href="/contents/checkups"><li class="menu_p">진료 기록</li></a>
+            <a href="/contents/checkups">
+                <li class="menu_p">진료 기록</li>
+            </a>
             <li class="menu_p_1">|</li>
-            <a href="/contents/prescriptions"><li class="menu_p">처방 기록</li></a>
+            <a href="/contents/prescriptions">
+                <li class="menu_p">처방 기록</li>
+            </a>
             <li class="menu_p_1">|</li>
-            <a href="/contents/operations"><li class="menu_p">시술 및 수술</li></a>
+            <a href="/contents/operations">
+                <li class="menu_p">시술 및 수술</li>
+            </a>
             <li class="menu_p_1">|</li>
-            <a href="/contents/round-records"><li class="menu_p">회진 기록</li></a>
+            <a href="/contents/round-records">
+                <li class="menu_p">회진 기록</li>
+            </a>
             <li class="menu_p_1">|</li>
             <li class="menu_p"><i class="fa fa-print" aria-hidden="true"
                     style="font-size:1.7vw; margin-top:-0.2vw;"></i></li>
@@ -50,61 +63,59 @@
     </div>
 
     <div style="position:absolute;font-size:10vw; margin-left: 4vw; top:9vw;">
-        <i class="fa fa-stethoscope" aria-hidden="true"></i>
+        <img src="/images/checkupimg.png" alt="My Image" style="width:8vw;height:8vw;">
     </div>
     <div style="margin-left:15vw; margin-top:2vw;   ">
-        <span style="font-size:1.5vw">[<%= userName %>]</span><span style="font-size:1vw;">님의 진료정보입니다.</span>
+        <span style="font-size:1.5vw"><%= userName %></span><span style="font-size:1vw;">님의 진료정보입니다.</span>
     </div>
     <div>
         <div>
             <nav>
                 <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist" style="font-size:1vw;">
                     <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
-                        aria-controls="nav-home" aria-selected="true">현재 기관만</a>
+                        aria-controls="nav-home" aria-selected="true" style="color:rgb(255,80,80);">현재 기관만</a>
                     <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
                         aria-controls="nav-profile" aria-selected="false">전체 기관</a>
                 </div>
-                <input class="search" type="text" id="myInput" onkeyup="myFunction()" placeholder="검색">
-                <div style="position:absolute;margin-left:76vw;top:15.3vw;">
-                        <div class="form-group ">
-                            <select id="inputState " class="form-control_filter">
-                                <option selected >오래된 순</option>
-                                <option >BMW</option>
-                                <option>Audi</option>
-                                <option>Maruti</option>
-                                <option>Tesla</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div
-                        style="position : relative;background-color:rgb(255, 80, 80); width:74vw; height:0.2vw;margin-bottom:0.1vw; margin-left:13vw;margin-top:1vw;">
-                    </div>
+                <div
+                    style="position : relative;background-color:rgb(255, 80, 80); width:74vw; height:0.2vw;margin-bottom:0.1vw; margin-left:13vw;margin-top:1vw;">
+                </div>
 
-                    <div>
-                        <table>
-                            <tr>
-                                <th>일시</th>
-                                <th>진단명</th>
-                                <th>진단내용</th>
-                                <th>담당의</th>
-                                <th>진료부서</th>
-                                <th>기관</th>
-                            </tr>
-			<tbody>
-			<% for(var i=0;i<obj.length; i++){ %>
+                <div>
+                    <table>
                         <tr>
-                            <td><%= obj[i].date %></td>
-                            <td><%= obj[i].diagnosis %></td>
-                            <td><%= obj[i].remarks %></td>
-                            <td><%= obj[i].attendant %></td>
-                            <td><%= obj[i].department%></td>
-                            <td><%= obj[i].institution %></td>
+                            <th>일시</th>
+                            <th>진단명</th>
+                            <th>진단내용</th>
+                            <th>담당의</th>
+                            <th>진료부서</th>
+                            <th>기관</th>
                         </tr>
-                        <% } %>
+                        <tbody>
+                            <% for(var i=0;i<obj.length; i++){ %>
+                            <tr>
+                                <td><%= obj[i].date %></td>
+                                <td><%= obj[i].diagnosis %></td>
+                                <td><%= obj[i].remarks %></td>
+                                <td><%= obj[i].attendant %></td>
+                                <td><%= obj[i].department%></td>
+                                <td><%= obj[i].institution %></td>
+                            </tr>
+                            <% } %>
+                            <% if(obj.length==0){ %>
+                            <tr>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                            <% } %>
 
-                            </tbody>
-                        </table>
-                    </div>
+                        </tbody>
+                    </table>
+                </div>
 </body>
 <footer sytle="font-family : nanumUltra;">
     <div

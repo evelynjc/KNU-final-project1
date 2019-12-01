@@ -22,9 +22,9 @@
 <body sytle="font-family : nanumUltra;">
     <div class="top-div">
         <form action="/users/logout" method="get">
-            <input type="submit" style="position:absolute; color:rgba(255,255,255,0.5); margin-left:93vw;margin-top:1vw; outline: 0; border:0; background:none;" value="SIGN OUT">
+            <input type="submit" style="font-size:1vw;position:absolute; color:rgba(255,255,255,0.5); margin-left:93vw;margin-top:1vw; outline: 0; border:0; background:none;" value="SIGN OUT">
         </form>
-        <p style="color:white; font-size:2vw; margin-left:2vw; padding-top:3vw">[<%= userName %>]님 환영합니다.</p>
+        <p style="color:white; font-size:2vw; margin-left:2vw; padding-top:3vw"><%= userName %>님 환영합니다.</p>
         <p style="color:white; font-size:1.5vw; margin-left:80vw;"> KNU MEDICAL INSTITUTE</p>
         <div
             style="position : absolute; top:6.8vw;background-color:rgb(255, 80, 80); width:100%; height:0.1vw;margin-bottom:0.1vw">
@@ -35,25 +35,25 @@
     </div>
 
     <div style="margin-left:9vw; margin-top:5vw;">
-        <span style="font-size:2vw;">[<%= pname %>]</span><span style="font-size:1.5vw;">님의 회진<span>
+        <span style="font-size:2vw;"><%= pname %></span><span style="font-size:1.5vw;">님의 회진<span>
     </div>
     <div class="board">
         <p style="margin-left:2vw; margin-top :2vw; font-size:1.5vw; margin-bottom:1.5vw;">활력 징후</p>
         <% if(obj.length !=0) {%>
-        <span style="margin-left:2vw; margin-top :3vw; font-size:1.5vw;">맥 박 : <%= obj[0].pulse %></span>
-         <span style="margin-left:10vw; margin-top :3vw; font-size:1.5vw;">호 흡 : <%= obj[0].respiration %></span>
-         <span style="margin-left:10vw; margin-top :3vw; font-size:1.5vw;">체 온 : <%= obj[0].bodyTemp %></span>
+        <span style="margin-left:2vw; margin-top :3vw; font-size:1.5vw;">맥 박 : <%= obj.BPMvalue %></span>
+         <span style="margin-left:10vw; margin-top :3vw; font-size:1.5vw;">호 흡 : <%= obj.MPHvalue %></span>
+         <span style="margin-left:10vw; margin-top :3vw; font-size:1.5vw;">체 온 : <%= obj.Tempvalue %></span>
          <% } %>
          <p style="margin-left:2vw; margin-top :3vw; font-size:1.5vw;">특이사항</p>
          <form action="/contents/rounds" method="post">
             <textarea name="remarks" autofocus required wrap="hard" class="text_box">없음</textarea>
             <% if(obj.length !=0) {%>
-             <input type="hidden" name="pulse" value=<%= obj[0].pulse %>>
-             <input type="hidden" name="respiration" value=<%= obj[0].respiration %>>
-             <input type="hidden" name="bodyTemp" value=<%= obj[0].bodyTemp %>>
+             <input type="hidden" name="pulse" value=<%= obj.BPMvalue %>>
+             <input type="hidden" name="respiration" value=<%= obj.MPHvalue %>>
+             <input type="hidden" name="bodyTemp" value=<%= obj.Tempvalue %>>
              <% } %>
-             <button class="menu_button" style="margin-left:63.5vw;">취소</button>
-            <button type="submit" class="menu_button" style="margin-left:2vw;" onclick="javascript:openModal(300,350)">완료</button>
+             <button class="menu_button" style="margin-left:63.5vw;" onclick="location.href='/contents/medical-staff'">취소</button>
+            <button type="submit" class="menu_button" style="margin-left:2vw;" onclick="javascript:openModal(400,350)">완료</button>
         </form>
     </div>
         <div>
@@ -79,7 +79,7 @@
         <div id="modal_back">
                 <div id="modal">
                     <div>
-                    <a href="javascript:closeModal()";><img src="/images/send2.gif"width="300"height="250"/></a>
+                    <a href="javascript:closeModal()";><img src="/images/send2.gif"width="400"height="250"/></a>
                         <div style="text-align: center;">데이터를 엔진에 전송하는 중입니다.<br>
                         잠시만 기다려주세요.
                         </div>

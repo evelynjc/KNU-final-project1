@@ -231,3 +231,20 @@ nav > div a.nav-item.nav-link:focus
     margin-left:13vw;
     margin-top:2vw;
 }
+
+.menu_button{
+    width:7vw;
+    height:2vw;
+    margin-left:2vw;
+    margin-top:4vw;
+    font-size:1.2vw;
+    color:white;
+    background-color: rgba(255, 80, 80,0.8);
+    outline:0;
+    border:0;
+    border-radius: 5px;
+}
+
+#modal_back { position:absolute; top:0; left:0; width:800; height:600; display:none; background:rgba(0,0,0,0.5); }
+
+	#modal a { color:#000; align-items: center;}

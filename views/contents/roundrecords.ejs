@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
         id="bootstrap-css">
-    <link href="/stylesheets/home.css" rel="stylesheet">
+    <link href="/stylesheets/patientRound.css" rel="stylesheet">
     <script src="/javascripts/see.js"></script>
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <link href="/stylesheets/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet">
@@ -25,10 +25,10 @@
     <div class="top-div">
         <form action="/users/logout" method="get">
             <input type="submit"
-                style="position:absolute; color:rgba(255,255,255,0.5); margin-left:93vw;margin-top:1vw; outline: 0; border:0; background:none;"
+                style="font-size:1vw;position:absolute; color:rgba(255,255,255,0.5); margin-left:93vw;margin-top:1vw; outline: 0; border:0; background:none;"
                 value="SIGN OUT">
         </form>
-        <p style="color:white; font-size:2vw; margin-left:2vw; padding-top:3vw">[<%= userName %>]님 환영합니다.</p>
+        <p style="color:white; font-size:2vw; margin-left:2vw; padding-top:3vw"><%= userName %>님 환영합니다.</p>
         <p style="color:white; font-size:1.5vw; margin-left:80vw;"> KNU MEDICAL INSTITUTE</p>
         <div
             style="position : absolute; top:6.8vw;background-color:rgb(255, 80, 80); width:100%; height:0.1vw;margin-bottom:0.1vw">
@@ -55,7 +55,9 @@
                 <li class="menu_p">시술 및 수술</li>
             </a>
             <li class="menu_p_1">|</li>
-            <a href="/contents/round-records"><li class="menu_p">회진 기록</li></a>
+            <a href="/contents/round-records">
+                <li class="menu_p">회진 기록</li>
+            </a>
             <li class="menu_p_1">|</li>
             <li class="menu_p"><i class="fa fa-print" aria-hidden="true"
                     style="font-size:1.7vw; margin-top:-0.2vw;"></i></li>
@@ -66,28 +68,16 @@
         <img src="/images/pulse.png" alt="My Image" style="width:12vw;height:8vw;">
     </div>
     <div style="margin-left:15vw; margin-top:2vw;   ">
-        <span style="font-size:1.5vw">[<%= userName %>]</span><span style="font-size:1vw;">님의 활력징후입니다.</span>
+        <span style="font-size:1.5vw"><%= userName %></span><span style="font-size:1vw;">님의 활력징후입니다.</span>
     </div>
     <div>
         <div>
             <nav>
                 <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist" style="font-size:1vw;">
                     <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
-                        aria-controls="nav-home" aria-selected="true">현재 기관만</a>
+                        aria-controls="nav-home" aria-selected="true" style="color:rgb(255,80,80);">현재 기관만</a>
                     <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
                         aria-controls="nav-profile" aria-selected="false">전체 기관</a>
-                </div>
-                <input class="search" type="text" id="myInput" onkeyup="myFunction()" placeholder="검색">
-                <div style="position:absolute;margin-left:76vw;top:15.3vw;">
-                    <div class="form-group ">
-                        <select id="inputState " class="form-control_filter">
-                            <option selected>오래된 순</option>
-                            <option>BMW</option>
-                            <option>Audi</option>
-                            <option>Maruti</option>
-                            <option>Tesla</option>
-                        </select>
-                    </div>
                 </div>
             </nav>
         </div>
@@ -96,8 +86,8 @@
         style="position : relative;background-color:rgb(255, 80, 80); width:74vw; height:0.2vw;margin-bottom:0.1vw; margin-left:13vw; margin-top:1vw">
     </div>
 
-    <div>
-        <table>
+    <div class="table_div">
+        <table id="mytable">
             <tr>
                 <th>Time</th>
                 <th>맥박</th>
@@ -106,26 +96,51 @@
                 <th>비고</th>
             </tr>
             <tbody>
-                            <% for(var i=0;i<obj.length; i++){ %>
-                            <tr>
-                                <td><%= obj[i].time %></td>
-                                <td><%= obj[i].pulse %></td>
-                                <td><%= obj[i].respiration %></td>
-                                <td><%= obj[i].bodyTemp%></td>
-                                <td><%= obj[i].remarks %></td>
-                            </tr>
-                            <% } %>
+                <% for(var i=0;i<obj.length; i++){ %>
+                <tr>
+                    <td><%= obj[i].time %></td>
+                    <td><%= obj[i].pulse %></td>
+                    <td><%= obj[i].respiration %></td>
+                    <td><%= obj[i].bodyTemp%></td>
+                    <td><%= obj[i].remarks %></td>
+                </tr>
+                <% } %>
+                <% if(obj.length==0){ %>
+                    <tr>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                    <% } %>
             </tbody>
         </table>
     </div>
-        <div class="board">
-            <p style="margin-left:3vw; margin-top :2vw; margin-bottom:1vw; font-size:1.5vw;">맥 박</p>
-            <div id="chartContainer" style="height: 20vw; width: 60vw; margin-left:7.5vw;"></div>
-            <p style="margin-left:3vw; margin-top :2vw; margin-bottom:1vw; font-size:1.5vw;">호 흡</p>
-            <div id="chartContainer2" style="height: 20vw; width: 60vw; margin-left:7.5vw;"></div>
-            <p style="margin-left:3vw; margin-top :2vw; margin-bottom:1vw; font-size:1.5vw;">체 온</p>
-            <div id="chartContainer3" style="height: 20vw; width: 60vw; margin-left:7.5vw;"></div>
+    <div class="board">
+        <p style="margin-left:3vw; margin-top :2vw; margin-bottom:1vw; font-size:1.5vw;">맥 박</p>
+        <div id="chartContainer" style="height: 20vw; width: 60vw; margin-left:7.5vw;"></div>
+        <p style="margin-left:3vw; margin-top :2vw; margin-bottom:1vw; font-size:1.5vw;">호 흡</p>
+        <div id="chartContainer2" style="height: 20vw; width: 60vw; margin-left:7.5vw;"></div>
+        <p style="margin-left:3vw; margin-top :2vw; margin-bottom:1vw; font-size:1.5vw;">체 온</p>
+        <div id="chartContainer3" style="height: 20vw; width: 60vw; margin-left:7.5vw;"></div>
     </div>
+    <script>
+        var data1 =[];
+        var data2 =[];
+        var data3 =[];
+        $(document).ready(function(){
+            for(var i=0;i<$("#mytable tbody tr").length; i++){
+                data1.push({y:parseFloat( $('tr:eq'+'('+i+')'+'>td:eq(1)').html())});
+                data2.push({y:parseFloat( $('tr:eq'+'('+i+')'+'>td:eq(2)').html())});
+                data3.push({y:parseFloat( $('tr:eq'+'('+i+')'+'>td:eq(3)').html())});
+            }
+            console.log(data1);
+            console.log(data2);
+            console.log(data3);
+            drawChart(data1,data2,data3);
+        });
+    </script>
 </body>
 <footer class="footer_home" sytle="font-family : nanumUltra;">
     <div

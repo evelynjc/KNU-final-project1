@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var operationsSchema = new Schema({
-    "patinetCode": String,
+    "patientCode": String,
     "code": String,
     "date": String,
     "type": String,

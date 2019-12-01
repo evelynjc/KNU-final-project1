@@ -7,6 +7,9 @@
         id="bootstrap-css">
     <link href="/stylesheets/lookup.css" rel="stylesheet">
     <link href="/stylesheets/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet">
+    <script src="/javascripts/record.js"></script>
+    <script src="/javascripts/see.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -17,7 +20,8 @@
     <!------ Include the above in your HEAD tag ---------->
     <script>
         $(document).click(function(){
-            self.close();
+            drawChart(data1,data2,data3);
+               // self.close();
         });
     </script>
     <title>HOME</title>
@@ -26,7 +30,7 @@
 
 <body sytle="font-family : nanumUltra;">
     <div class="top-div">
-        <p style="color:white; font-size:2vw; margin-left:2vw; padding-top:3vw">[<%= userName %>]님 환영합니다.</p>
+        <p style="color:white; font-size:2vw; margin-left:2vw; padding-top:3vw"><%= userName %>님 환영합니다.</p>
         <p style="color:white; font-size:1.5vw; margin-left:80vw;"> KNU MEDICAL INSTITUTE</p>
         <div
             style="position : absolute; top:6.8vw;background-color:rgb(255, 80, 80); width:100%; height:0.1vw;margin-bottom:0.1vw">
@@ -38,7 +42,7 @@
 
 
     <div style="margin-left:15vw; margin-top:2vw;   ">
-        <span style="font-size:1.5vw">[<%= infoobj[0].name %>]</span><span style="font-size:1vw;">님의 정보입니다.</span>
+        <span style="font-size:1.5vw"><%= infoobj[0].name %></span><span style="font-size:1vw;">님의 정보입니다.</span>
     </div>
     <div>
         <div>
@@ -193,7 +197,9 @@
                     </tbody>
                 </table>
                 <span style="font-size:1.5vw; margin-left:15vw">- 활력 징후</span>
-                <table>
+                <button type="submit" class="menu_button" style="margin-left:2vw;" id="graph"
+                onclick="javascript:openModal(800, 600)">그래프</button>
+                <table id="mytable">
                     <tr>
                         <th>Time</th>
                         <th>맥박</th>
@@ -225,7 +231,38 @@
             </div>
         </div>
     </div>
+    <div id="modal_back">
+            <div id="modal">
+                <div>
+                    <a href="javascript:closeModal()">
+                        <div>
+                    <p style="margin-left:3vw; margin-top :2vw; margin-bottom:1vw; font-size:1.5vw; color:white;">맥 박</p>
+                    <div id="chartContainer" style="height: 20vw; width: 60vw; margin-left:7.5vw;"></div>
+                    <p style="margin-left:3vw; margin-top :2vw; margin-bottom:1vw; font-size:1.5vw;color:white;">호 흡</p>
+                    <div id="chartContainer2" style="height: 20vw; width: 60vw; margin-left:7.5vw;"></div>
+                    <p style="margin-left:3vw; margin-top :2vw; margin-bottom:1vw; font-size:1.5vw;color:white;">체 온</p>
+                    <div id="chartContainer3" style="height: 20vw; width: 60vw; margin-left:7.5vw;"></div>
+                </div>
+                </a>
+                </div>
+            </div>
+        </div>
 </body>
+<script>
+        var data1=[];
+        var data2=[];
+        var data3=[];
+        $(document).ready(function(){
+            for(var i=10;i<$("#mytable tbody tr").length+10; i++){
+                data1.push({y:parseFloat( $('tr:eq'+'('+i+')'+'>td:eq(1)').html())});
+                data2.push({y:parseFloat( $('tr:eq'+'('+i+')'+'>td:eq(2)').html())});
+                data3.push({y:parseFloat( $('tr:eq'+'('+i+')'+'>td:eq(3)').html())});
+            }
+            console.log(data1);
+            console.log(data2);
+            console.log(data3);
+        });
+    </script>
 <footer class="footer" sytle="font-family : nanumUltra;">
     <div
         style="position : absolute; bottom:6.8vw;background-color:rgb(255, 80, 80); width:100%; height:0.1vw;margin-bottom:0.1vw">

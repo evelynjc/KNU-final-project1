@@ -1,4 +1,4 @@
-window.onload = function() {
+function drawChart(data1, data2, data3){
     var chart = new CanvasJS.Chart("chartContainer", {
         animationEnabled: true,
         scaleGridLineColor : "rgb(255,80,80)",
@@ -8,11 +8,9 @@ window.onload = function() {
             includeZero: false
         },
         data: [{        
-            type: "line",lineColor:"rgb(255,80,80)", color: "rgba(83, 223, 128, .6)",     
-	dataPoints:[{y:10},
-	{y:20}]
+            type: "line",lineColor:"rgb(255,80,80)", color: "rgba(120,130,240,0.5)",     
+	dataPoints:data1
         }]
-
     });
     chart.render();
 
@@ -24,21 +22,8 @@ window.onload = function() {
             includeZero: false
         },
         data: [{        
-            type: "line",lineColor:"rgb(255,80,80)", color: "rgba(83, 223, 128, .6)",     
-            dataPoints: [    
-                { y: 25 },
-                { y: 26},
-                { y: 20},
-                { y: 19 },
-                { y: 17 },
-                { y: 20 },
-                { y: 14 },
-                { y: 17 },
-                { y: 21 },
-                { y: 22 },
-                { y: 20 },
-                { y: 17 }
-            ]
+            type: "line",lineColor:"rgb(255,80,80)", color: "rgba(120,130,240,0.5)",
+            dataPoints:data2
         }]
     });
     chart1.render();
@@ -51,21 +36,8 @@ window.onload = function() {
             includeZero: false
         },
         data: [{        
-            type: "line",lineColor:"rgb(255,80,80)", color: "rgba(83, 223, 128, .6)",     
-            dataPoints: [    
-                { y: 61 },
-                { y: 62},
-                { y: 66},
-                { y: 81 },
-                { y: 90 },
-                { y: 75 },
-                { y: 63 },
-                { y: 80 },
-                { y: 88 },
-                { y: 75 },
-                { y: 84 },
-                { y: 67 }
-            ]
+            type: "line",lineColor:"rgb(255,80,80)", color: "rgba(120,130,240,0.5)",     
+            dataPoints: data3
         }]
     });
     chart2.render();

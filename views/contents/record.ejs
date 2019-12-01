@@ -24,10 +24,10 @@
     <div class="top-div">
         <form action="/users/logout" method="get">
             <input type="submit"
-                style="position:absolute; color:rgba(255,255,255,0.5); margin-left:93vw;margin-top:1vw; outline: 0; border:0; background:none;"
+                style="font-size:1vw;position:absolute; color:rgba(255,255,255,0.5); margin-left:93vw;margin-top:1vw; outline: 0; border:0; background:none;"
                 value="SIGN OUT">
         </form>
-        <p style="color:white; font-size:2vw; margin-left:2vw; padding-top:3vw">[<%= userName %>]님 환영합니다.</p>
+        <p style="color:white; font-size:2vw; margin-left:2vw; padding-top:3vw"><%= userName %>님 환영합니다.</p>
         <p style="color:white; font-size:1.5vw; margin-left:80vw;"> KNU MEDICAL INSTITUTE</p>
         <div
             style="position : absolute; top:6.8vw;background-color:rgb(255, 80, 80); width:100%; height:0.1vw;margin-bottom:0.1vw">
@@ -38,11 +38,11 @@
     </div>
 
     <div style="margin-left:9vw; margin-top:5vw;">
-        <span style="font-size:2vw;">[<%= obj[0].name %>]</span><span style="font-size:1.5vw;">님의 진료<span>
+        <span style="font-size:2vw;"><%= obj[0].name %></span><span style="font-size:1.5vw;">님의 진료<span>
     </div>
     <div class="board">
-        <p style="margin-left:2vw; margin-top :2vw; font-size:1.5vw;">환자 정보</p>
         <div class="table_div">
+            <p style="margin-top :2vw; font-size:1.5vw;margin-bottom: 1vw;">환자 정보</p>
             <table>
                 <tr>
                     <th>이름</th>
@@ -53,7 +53,7 @@
                     <th>입원일</th>
                     <th>입원부서</th>
                     <th>구분</th>
-                    <th>상태</th>   
+                    <th>상태</th>
                     <th>기관</th>
                 </tr>
                 <tbody>
@@ -71,24 +71,105 @@
                         <td><%= obj[i].institution %></td>
                     </tr>
                     <% } %>
+                    <% if(obj.length==0){ %>
+                        <tr>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                        <% } %>
+                </tbody>
+            </table>
+            <p style="margin-top :2vw; font-size:1.5vw;margin-bottom: 1vw;">진료 정보</p>
+            <table>
+                <tr>
+                    <th>일시</th>
+                    <th>진단명</th>
+                    <th>진단내용</th>
+                    <th>담당의</th>
+                    <th>진료부서</th>
+                    <th>기관</th>
+                </tr>
+                <tbody>
+                    <% for(var i=0;i<list.length; i++){ %>
+                    <tr>
+                        <td><%= list[i].date %></td>
+                        <td><%= list[i].diagnosis %></td>
+                        <td><%= list[i].remarks %></td>
+                        <td><%= list[i].attendant %></td>
+                        <td><%= list[i].department%></td>
+                        <td><%= list[i].institution %></td>
+                    </tr>
+                    <% } %>
+                    <% if(list.length==0){ %>
+                        <tr>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                        <% } %>
+                </tbody>
+            </table>
+            <p style="margin-top :2vw; font-size:1.5vw;margin-bottom: 1vw;">처방 정보</p>
+            <table>
+                <tr>
+                    <th>일시</th>
+                    <th>진단명</th>
+                    <th>진단내용</th>
+                    <th>담당의</th>
+                    <th>진료부서</th>
+                    <th>기관</th>
+                </tr>
+                <tbody>
+                    <% for(var i=0;i<pre.length; i++){ %>
+                    <tr>
+                        <td><%= pre[i].date %></td>
+                        <td><%= pre[i].medication %></td>
+                        <td><%= pre[i].attendant %></td>
+                        <td><%= pre[i].department%></td>
+                        <td><%= pre[i].institution %></td>
+                        <td><%= pre[i].remarks %></td>
+                    </tr>
+                    <% } %>
+                    <% if(pre.length==0){ %>
+                        <tr>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                        <% } %>
                 </tbody>
             </table>
         </div>
         <form method="post" actoin="/contents/record" id="checkup">
             <input type="hidden" name="pcode" value=<%= obj[0].patientCode %>>
             <p style="margin-left:2vw; margin-top :2vw; font-size:1.5vw;">병 명</p>
-            <textarea form="checkup" name="diagnosis" autofocus required wrap="hard" class="text_box" cols="140" rows="15"></textarea>
+            <textarea form="checkup" name="diagnosis" autofocus required wrap="hard" class="text_box" value=""> </textarea>
             <p style="margin-left:2vw; margin-top :2vw; font-size:1.5vw;">진단 및 소견</p>
-            <textarea  form="checkup" name="remarks" autofocus required wrap="hard" class="text_box" cols="140" rows="15"></textarea>
+            <textarea form="checkup" name="remarks" autofocus required wrap="hard" class="text_box"value=""> </textarea>
             <p style="margin-left:2vw; margin-top :2vw; font-size:1.5vw;">처 방</p>
-            <textarea  form="checkup" name="prescription" autofocus required wrap="hard" class="text_box" cols="140" rows="15"></textarea>
+            <textarea form="checkup" name="prescription" autofocus required wrap="hard" class="text_box"value=""> </textarea>
             <p style="margin-left:2vw; margin-top :2vw; font-size:1.5vw;">처방 특이사항</p>
-            <textarea  form="checkup" name="etc" autofocus required wrap="hard" class="text_box" cols="140" rows="15"></textarea>
-            <button class="menu_button" style="margin-left:63.5vw;">취소</button>
-            <button type="submit" class="menu_button" style="margin-left:2vw;" onclick="javascript:openModal(350, 350)">완료</button>
+            <textarea form="checkup" name="etc" autofocus required wrap="hard" class="text_box"value=""> </textarea>
+            <button class="menu_button" style="margin-left:63.5vw;" onclick="location.href='/contents/medical-staff'">취소</button>
+            <button type="submit" class="menu_button" style="margin-left:2vw;"
+                onclick="javascript:openModal(350, 350)">완료</button>
         </form>
     </div>
-    
+
     <div>
         <footer sytle="font-family : nanumUltra;">
             <div

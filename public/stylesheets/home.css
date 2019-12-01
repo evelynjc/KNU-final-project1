@@ -230,3 +230,12 @@ nav > div a.nav-item.nav-link:focus
     margin-left:13vw;
     margin-top:2vw;
 }
+
+.table_div{
+    margin-top:1vw;
+    width: 77vw; height:20vw;
+    margin-left:10vw;
+    overflow: auto;
+    border:none;
+}
+
