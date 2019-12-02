@@ -43,7 +43,8 @@ module.exports = function (callee) {
                 }
                 invokeUrl += parsedData;
                 console.log('invokeUrl: ' + invokeUrl);
-                request(invokeUrl, function (err, res, result) {
+                request(encodeURI(invokeUrl), function (err, res, result) {
+                    if(err)   console.log('err?: '+err);
                     statusCodeErrorHandler(res.statusCode, callback, result);
                 });
             },
@@ -52,6 +53,7 @@ module.exports = function (callee) {
                 queryUrl += hash;
                 console.log('queryUrl: ' + queryUrl);
                 request(queryUrl, function (err, res, result) {
+                    if(err)    console.log('err?: ' + err);
                     statusCodeErrorHandler(res.statusCode, callback, result);
                 });
             }

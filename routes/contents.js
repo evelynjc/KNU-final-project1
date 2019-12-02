@@ -11,51 +11,15 @@ const Prescription = require('../models/prescription');
 const Round = require('../models/round');
 const Userinfo = require('../models/userinfo');
 
+
+var moment = require('moment');
+require('moment-timezone');
+moment.tz.setDefault('Asia/Seoul');
+
 // CONFIGURE ROUTER TO USE bodyParser
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 var checkupobj;
-// Checkup.find({}, function(err, checkups){
-//     if(err) console.log('checkup model error');
-//     if(!checkups) console.log('checkup not found');
-//     //console.log('checkups: '+checkups);
-//     //console.log(typeof(checkups));
-//     //console.log(checkups[0].date); //JSON.stringify()
-//     //console.log(checkups.length);
-//     checkupobj = JSON.parse(JSON.stringify(checkups));
-// });
-// MedicalStaff.find({}, function(err, medstaff){
-//     if(err) console.log('medstaff model error');
-//     if(!medstaff) console.log('medstaff not found');
-//     //console.log('medstaff: '+medstaff);
-// });
-// Operation.find({}, function(err, operations){
-//     if(err) console.log('operations model error');
-//     if(!operations) console.log('operations not found');
-//     //console.log('operations: '+operations);
-// });
-// PatientInfo.find({}, function(err, patientsinfo){
-//     if(err) console.log('patientsinfo model error');
-//     if(!patientsinfo) console.log('patientsinfo not found');
-//     //console.log('patientsinfo: '+patientsinfo);
-// });
-// Prescription.find({}, function(err, prescriptions){
-//     if(err) console.log('prescriptions model error');
-//     if(!prescriptions) console.log('prescriptions not found');
-//     //console.log('prescriptions: '+prescriptions);
-// });
-// Round.find({}, function(err, rounds){
-//     if(err) console.log('round model error');
-//     if(!rounds) console.log('round not found');
-//     //console.log('rounds: '+rounds);
-// });
-// Userinfo.find({}, function(err, usrinfo){
-//     if(err) console.log('usrinfo model error');
-//     if(!usrinfo) console.log('usrinfo not found');
-//     //console.log('usrinfo: '+usrinfo);
-// });
-
-/////////////////////
 
 var myname, idobj, myidcode, infoobj, checkupobj, presobj, operobj, roundrecobj;
 /* Black Bridge Path GET */
@@ -235,14 +199,14 @@ router.post('/rounds', (req, res, next) => {
     // console.log('checkup record form req received');
     // console.log(req.body);
     // res.redirect('/contents/medical-staff');
-    let dateObj = new Date();
-    let date = ("0" + dateObj.getDate()).slice(-2);
-    let month = ("0" + (dateObj.getMonth() + 1)).slice(-2);
-    let year = dateObj.getFullYear();
-    var h = addZero(dateObj.getHours());
-    var m = addZero(dateObj.getMinutes());
-    var dateNow = year + "." + month + "." + date + "-" + h + ":" + m;
-
+    // let dateObj = new Date();
+    // let date = ("0" + dateObj.getDate()).slice(-2);
+    // let month = ("0" + (dateObj.getMonth() + 1)).slice(-2);
+    // let year = dateObj.getFullYear();
+    // var h = addZero(dateObj.getHours());
+    // var m = addZero(dateObj.getMinutes());
+    // var dateNow = year + "." + month + "." + date + "-" + h + ":" + m;
+    var dateNow = moment().format('YYYY.MM.DD-HH:mm');
 
     var reqObj = req.body;
     var Pulse = reqObj.pulse;
@@ -264,12 +228,25 @@ router.post('/rounds', (req, res, next) => {
             inst = thePatient.institution;
             depart = thePatient.department;
 
-            Round.create({ patientCode: find_code, pulse: Pulse, time: dateNow, respiration: breath, bodyTemp: BT, hash: "", remarks: roRemarks }, (err, result) => {
-                if (err) console.log('checkup document create error');
-                if (!result) console.log("checkup document result doesn't exist");
+            var API_CALL = require('./api-request')('blockchain');
+            var data = '{ "patientCode":"' + find_code + '", "pulse":"' + Pulse + '", "time": "' + dateNow + '", "respiration": "' + breath + '", "bodyTemp": "' + BT + '", "remarks": "' + roRemarks + '"}';
+            console.log('data: ' + data);
+            data = JSON.parse(data);
+            API_CALL.invoke(data, (err, apiResult) => {
+                if (!err) {
+                    Round.create({ patientCode: find_code, pulse: Pulse, time: dateNow, respiration: breath, bodyTemp: BT, hash: apiResult.hash, remarks: roRemarks }, (err, result) => {
+                        if (err) console.log('round document create error: ' + err);
+                        if (!apiResult) console.log("round document result doesn't exist");
+                        console.log('round record block has been created: ' + JSON.stringify(apiResult));
+                        res.redirect('/contents/medical-staff');
+                    });
+                }
+                else {
+                    res.json(err);
+                }
             });
         });
-        res.redirect('/contents/medical-staff');
+        //res.redirect('/contents/medical-staff');
     })();
 });
 
@@ -306,11 +283,12 @@ router.post('/record', (req, res, next) => {
     // console.log('checkup record form req received');
     console.log(req.body);
     // res.redirect('/contents/medical-staff');
-    let dateObj = new Date();
-    let date = ("0" + dateObj.getDate()).slice(-2);
-    let month = ("0" + (dateObj.getMonth() + 1)).slice(-2);
-    let year = dateObj.getFullYear();
-    var dateNow = year + "." + month + "." + date;
+    // let dateObj = new Date();
+    // let date = ("0" + dateObj.getDate()).slice(-2);
+    // let month = ("0" + (dateObj.getMonth() + 1)).slice(-2);
+    // let year = dateObj.getFullYear();
+    // var dateNow = year + "." + month + "." + date;
+    var dateNow = moment().format('YYYY.MM.DD');
 
     var reqObj = req.body;
     var pcode = reqObj.pcode;
@@ -327,18 +305,47 @@ router.post('/record', (req, res, next) => {
             if (!thePatient) console.log("patientinfo result doesn't exist");
             inst = thePatient.institution;
             depart = thePatient.department;
-            if (diagno != " " || chRemarks != " ") {
-                Checkup.create({ patientCode: pcode, diagnosis: diagno, date: dateNow, attendant: sess.name, department: depart, institution: inst, hash: "", remarks: chRemarks }, (err, result) => {
-                    if (err) console.log('checkup document create error');
-                    if (!result) console.log("checkup document result doesn't exist");
-                });
-            }
-            if (presc != " " || prRemarks != " ") {
-                Prescription.create({ patientCode: pcode, attendant: sess.name, medication: presc, department: depart, date: dateNow, institution: inst, remarks: prRemarks, hash: "" }, (err, result) => {
-                    if (err) console.log('prescription document create error');
-                    if (!result) console.log("prescription document result doesn't exist");
-                });
-            }
+
+            var API_CALL = require('./api-request')('blockchain');
+            var chData = '{'+'"patientCode": "'+pcode+'", "diagnosis": "'+diagno+'", "date": "'+dateNow+'", "attendant": "'+
+            sess.name+'", "department": "'+depart+'", "institution": "'+inst+'", "remarks": "'+chRemarks+'"}';
+            var prData = '{'+'"patientCode": "'+pcode+'", "attendant": "'+sess.name+'", "medication": "'+presc+'", "department": "'+
+            depart+'", "date": "'+dateNow+'", "institution": "'+inst+'", "remarks": "'+prRemarks+'"}';
+            console.log('chData: ' + chData);
+            console.log('prData: ' + prData);
+            chData = JSON.parse(chData);
+            prData = JSON.parse(prData);
+
+            API_CALL.invoke(chData, (err, chapiResult) => {
+                if (!err) {
+                    if (diagno != " " || chRemarks != " ") {
+                        Checkup.create({ patientCode: pcode, diagnosis: diagno, date: dateNow, attendant: sess.name, department: depart, institution: inst, hash: chapiResult.hash, remarks: chRemarks }, (err, chResult) => {
+                            if (err) console.log('checkup document create error');
+                            if (!chResult) console.log("checkup document result doesn't exist");
+                            console.log('checkup record block has been created: ' + JSON.stringify(chResult));
+                        });
+                    }
+                }
+                else {
+                    res.json(err);
+                }
+            });
+
+            API_CALL.invoke(prData, (err, prapiResult) => {
+                if (!err) {
+                    if (presc != " " || prRemarks != " ") {
+                        Prescription.create({ patientCode: pcode, attendant: sess.name, medication: presc, department: depart, date: dateNow, institution: inst, remarks: prRemarks, hash: prapiResult.hash }, (err, prResult) => {
+                            if (err) console.log('prescription document create error');
+                            if (prResult) console.log("prescription document result doesn't exist");
+                            console.log('prescription record block has been created: ' + JSON.stringify(prResult));
+                        });
+                    }
+                }
+                else {
+                    res.json(err);
+                }
+            });
+
         });
         res.redirect('/contents/medical-staff');
     })();
@@ -375,7 +382,8 @@ router.get('/lookup', (req, res, next) => {
         res.redirect('/users/login');
     }
 });
-// operationRecord GET
+
+/* Operatoin Record GET */
 router.get('/operation-records', (req, res, next) => {
     let sess = req.session;
     if (sess.userid && sess.typeMedStaff) {
@@ -401,16 +409,17 @@ router.post('/operation-records', (req, res, next) => {
     // console.log('checkup record form req received');
     // console.log(req.body);
     // res.redirect('/contents/medical-staff');
-    let dateObj = new Date();
-    let date = ("0" + dateObj.getDate()).slice(-2);
-    let month = ("0" + (dateObj.getMonth() + 1)).slice(-2);
-    let year = dateObj.getFullYear();
-    var dateNow = year + "." + month + "." + date;
+    // let dateObj = new Date();
+    // let date = ("0" + dateObj.getDate()).slice(-2);
+    // let month = ("0" + (dateObj.getMonth() + 1)).slice(-2);
+    // let year = dateObj.getFullYear();
+    // var dateNow = year + "." + month + "." + date;
+    var dateNow = moment().format('YYYY.MM.DD');
 
     var reqObj = req.body;
     var pcode = reqObj.pcode;
     var Type = reqObj.ptype;
-    var pcondition = reqObj.pcondition;
+    var pcondition = reqObj.status;
     var Ward = reqObj.ward;
     var Room = reqObj.room;
     var opertype = reqObj.opertype;
@@ -430,15 +439,46 @@ router.post('/operation-records', (req, res, next) => {
         pname = thePatient.name;
         psex = thePatient.sex;
         pid = thePatient.userid;
-            PatientInfo.create({ userid: pid, patientCode: pcode, name: pname, sex: psex, attendant: sess.name, ward: Ward, room: Room, date: dateNow, department: depart, type: Type, condition: pcondition, institution: inst, hash: "" }, (err, result) => {
-                if (err) console.log('checkup document create error');
-                if (!result) console.log("checkup document result doesn't exist");
-                Operation.create({ patientCode: pcode, type: opertype, operation: oper, attendant: sess.name, department: depart, date: dateNow, institution: inst, remarks: Remarks, hash: "" }, (err, result) => {
-                    if (err) console.log('prescription document create error -> ' + err);
-                    if (!result) console.log("prescription document result doesn't exist");
-                    res.redirect('/contents/medical-staff');
+
+        var API_CALL = require('./api-request')('blockchain');
+        var pinfoData = '{' + '"userid": "' + pid + '", "patientCode": "' + pcode +
+            '", "name": "' + pname + '", "sex": "' + psex + '", "attendant": "' + sess.name +
+            '", "ward": "' + Ward + '", "room": "' + Room + '", "date": "' + dateNow +
+            '", "department": "' + depart + '", "type": "' + Type + '", "condition": "' +
+            pcondition + '", "institution": "' + inst + '"}';
+        var operData = '{' + '"patientCode": "' + pcode + '", "type": "' + opertype + '", "operation": "' + oper + '", "attendant": "' + sess.name + '", "department": "' + depart + '", "date": "' + dateNow + '", "institution": "' + inst + '", "remarks": "' + Remarks + '"}';
+        console.log('pinfoData: ' + pinfoData);
+        console.log('operData: ' + operData);
+        pinfoData = JSON.parse(pinfoData);
+        operData = JSON.parse(operData);
+        API_CALL.invoke(pinfoData, (err, apiResult) => {
+            if (!err) {
+                console.log(apiResult);
+                PatientInfo.create({ userid: pid, patientCode: pcode, name: pname, sex: psex, attendant: sess.name, ward: Ward, room: Room, date: dateNow, department: depart, type: Type, condition: pcondition, institution: inst, hash: apiResult.hash }, (err, papiResult) => {
+                    if (err) console.log('patientinfo document create error: ' + err);
+                    if (!papiResult) console.log("patientinfo document result doesn't exist");
+                    console.log('round record block has been created: ' + JSON.stringify(papiResult));
+                    API_CALL.invoke(operData, (errr, apiResult) => {
+                        if (!errr) {
+                            console.log(apiResult);
+                            Operation.create({ patientCode: pcode, type: opertype, operation: oper, attendant: sess.name, department: depart, date: dateNow, institution: inst, remarks: Remarks, hash: apiResult.hash }, (err, oapiResult) => {
+                                if (errr) console.log('operation document create error -> ' + errr);
+                                if (!oapiResult) console.log("operation document result doesn't exist");
+                                console.log('operation record block has been created: ' + JSON.stringify(oapiResult));
+                                res.redirect('/contents/medical-staff');
+                            });
+                        }
+                        else {
+                            res.json(errr);
+                        }
+                    });
                 });
-            })
+            }
+            else {
+                res.json(err);
+            }
+        });
+
 
     });
 });
